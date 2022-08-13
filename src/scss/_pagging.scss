@@ -1,0 +1,47 @@
+.pagging {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__arrow {
+    width: 33px;
+    height: 24px;
+    cursor: pointer;
+    background: url('https://img.icons8.com/ios/50/000000/arrow--v1.png') 0 0 / 100% no-repeat;
+
+    @media (min-width: $md2+px) {
+      &:hover {
+        background: url('https://img.icons8.com/ios-filled/50/000000/arrow.png') 0 0 / 100%
+          no-repeat;
+      }
+    }
+    &:first-child {
+      padding-top: 10px;
+      transform: rotate(-180deg);
+    }
+    &:last-child {
+      padding-bottom: 10px;
+      transform: rotate(0deg);
+    }
+  }
+  &__list {
+    margin: 0px 35px;
+    display: flex;
+    li {
+    }
+  }
+  &__item {
+    width: 33px;
+    height: 33px;
+    display: flex;
+    color: #333333;
+    font-weight: 900;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    &._active {
+      color: #fff;
+      background-color: #fd8424;
+    }
+  }
+}
