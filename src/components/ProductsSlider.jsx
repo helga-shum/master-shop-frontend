@@ -17,7 +17,7 @@ function ProductsSlider() {
         <div className="products-slider__slide">
           <div className="products-slider__items items-products">
             {clothes.map((obj) => (
-              <Item title={obj.name} />
+              <Item {...obj} />
             ))}
           </div>
         </div>

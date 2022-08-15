@@ -1,45 +1,60 @@
 [
   {
     "id": 0,
-    "imageUrl": "#",
-    "name": "Skirt",
+    "imageUrl": "https://i.postimg.cc/3NGnfPKb/pexels-abel-matthew-11669344.jpg",
+    "title": "Skirt",
+    "brand": "Chanel",
+    "sizes": [36, 38, 40, 42],
+    "price": 800,
+    "category": 3,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://i.postimg.cc/1zPPmS0x/pexels-breno-cardoso-11734542.jpg",
+    "title": "T-Shirt",
+    "brand": "Chanel",
+    "sizes": [40],
+    "price": 800,
+    "category": 2,
+    "rating": 4
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://i.postimg.cc/wMBj6zpx/pexels-polina-tankilevitch-7746386.jpg",
+    "title": "Trousers",
+    "brand": "Chanel",
+    "sizes": [34, 36, 38, 40, 42],
+    "price": 800,
+    "category": 4,
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://i.postimg.cc/Tw4ZDvb3/pexels-lisa-fotios-1427984.jpg",
+    "title": "Skirt",
+    "brand": "Chanel",
     "sizes": [36, 38, 40, 42],
     "price": 800,
     "category": 0,
     "rating": 4
   },
   {
-    "id": 0,
-    "imageUrl": "",
-    "name": "T-Shirt",
-    "sizes": [36, 38, 40, 42],
+    "id": 4,
+    "imageUrl": "https://i.postimg.cc/LsHKdTR2/pexels-ti-u-b-o-tr-ng-8298105.jpg",
+    "title": "Skirt",
+    "brand": "Chanel",
+    "sizes": [34, 36],
     "price": 800,
-    "category": 0,
+    "category": 1,
     "rating": 4
   },
   {
-    "id": 0,
-    "imageUrl": "",
-    "name": "Trousers",
-    "sizes": [36, 38, 40, 42],
-    "price": 800,
-    "category": 0,
-    "rating": 4
-  },
-  {
-    "id": 0,
-    "imageUrl": "",
-    "name": "Skirt",
-    "sizes": [36, 38, 40, 42],
-    "price": 800,
-    "category": 0,
-    "rating": 4
-  },
-  {
-    "id": 0,
-    "imageUrl": "",
-    "name": "Skirt",
-    "sizes": [36, 38, 40, 42],
+    "id": 5,
+    "imageUrl": "https://i.postimg.cc/269f7Bsm/pexels-blue-bird-7243220.jpg",
+    "title": "Skirt",
+    "brand": "Chanel",
+    "sizes": [40, 42],
     "price": 800,
     "category": 0,
     "rating": 4

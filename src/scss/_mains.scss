@@ -162,10 +162,7 @@
     position: relative;
   }
   &__body {
-    display: none;
-    &._active {
-      display: block;
-    }
+    display: block;
   }
   &__list {
     > li {
@@ -486,6 +483,7 @@
     }
   }
   &__stock {
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -666,7 +664,7 @@
       transition: all 0.3s ease 0s;
       width: 10px;
       height: 10px;
-      background: url('https://img.icons8.com/ios/30/000000/long-arrow-down.png') 0 0 no-repeat;
+      background: url('https://img.icons8.com/ios/10/000000/long-arrow-down.png') 0 0 no-repeat;
     }
 
     &._categories {
@@ -702,7 +700,7 @@
 .categories-search {
   border: 1px solid #f3f3f3;
   background-color: #fff;
-  display: none;
+  display: flex;
   &::after {
     content: '';
     background-color: #f68038;
@@ -712,9 +710,7 @@
     width: 100%;
     left: 0;
   }
-  &._active {
-    display: flex;
-  }
+
   border-bottom: 4px solid #f68038;
   &__column {
     flex: 0 1 33%;
@@ -826,6 +822,7 @@
 }
 .content-mainslider {
   padding: 20px 35px 60px 35px;
+  text-align: left;
   &__title {
     color: #333333;
     font-size: 48px;
@@ -842,11 +839,10 @@
   }
   &__footer {
     padding: 15px 0px 0px 0px;
-    text-align: center;
   }
   &__price {
     margin: 0px 0px 24px 0px;
-    color: #ffffff;
+    color: #36949f;
     font-size: 36px;
     font-weight: 900;
     line-height: 24px;
@@ -860,7 +856,7 @@
   }
   &__button {
     height: 33px;
-    border: 3px solid #ffffff;
+    border: 3px solid #36949f;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -868,7 +864,7 @@
     padding: 0px 20px;
     span {
       font-weight: 900;
-      color: #fff;
+      color: #36949f;
       text-transform: uppercase;
       padding: 0px;
     }
