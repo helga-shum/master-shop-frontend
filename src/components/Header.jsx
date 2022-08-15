@@ -1,5 +1,15 @@
 import logo from '../img/logo.png';
+import React, { useState } from 'react';
 function Header() {
+  const links = ['Brands', 'Sale', 'Delivery', 'Garanty', 'Payment', 'Contacts'];
+  const [cartCount, setCartCount] = useState(0);
+  const [activeLink, setActiveLink] = useState(0);
+  const onClickBtn = () => {
+    setCartCount(cartCount + 1);
+  };
+  const onActiveLink = (index) => {
+    setActiveLink(index);
+  };
   return (
     <header className="header">
       <div className="header__top top-header">
@@ -14,36 +24,16 @@ function Header() {
 
               <nav className="menu__body">
                 <ul className="menu__list">
-                  <li>
-                    <a href="" className="menu__link">
-                      Бренды
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" className="menu__link">
-                      Распродажа
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" className="menu__link">
-                      Доставка и Сборка
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" className="menu__link">
-                      Гарантия
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" className="menu__link">
-                      Оплата
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" className="menu__link">
-                      Контакты
-                    </a>
-                  </li>
+                  {links.map((link, i) => (
+                    <li>
+                      <a
+                        href="#"
+                        onClick={() => onActiveLink(i)}
+                        className={activeLink == i ? 'menu__link _active' : 'menu__link'}>
+                        {link}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </nav>
             </div>
@@ -118,11 +108,11 @@ function Header() {
                   </p>
                 </div>
               </div>
-              <div className="info-header__column">
-                <a href="" className="info-header__cart">
-                  <span>12</span>
-                </a>
-              </div>
+              <button onClick={onClickBtn} className="info-header__column">
+                <div className="info-header__cart">
+                  <span>{cartCount}</span>
+                </div>
+              </button>
             </div>
           </div>
         </div>

@@ -1,6 +1,8 @@
 import Item from './Item';
+import clothes from '../clothes.json';
 import Pagging from './Pagging';
 function ProductsSlider() {
+  console.log(clothes);
   return (
     <div className="page__products products-slider">
       <div className="products-slider__header">
@@ -14,15 +16,9 @@ function ProductsSlider() {
       <div className="products-slider__item _swiper">
         <div className="products-slider__slide">
           <div className="products-slider__items items-products">
-            <Item title="T-Shirt" />
-            <Item title="Trousers" />
-            <Item title="Jeans" />
-            <Item title="Jeans" />
-            <Item title="Jeans" />
-            <Item title="Jeans" />
-            <Item title="Jeans" />
-            <Item title="Jeans" />
-            <Item title="Jeans" />
+            {clothes.map((obj) => (
+              <Item title={obj.name} />
+            ))}
           </div>
         </div>
       </div>

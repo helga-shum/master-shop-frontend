@@ -1,5 +1,5 @@
 import skirt from '../img/skirt.jpg';
-function Item(props) {
+function Item({ title }) {
   return (
     <div className="items-products__column">
       <div className="item-product">
@@ -10,7 +10,7 @@ function Item(props) {
         <div className="item-product__body">
           <a href="" className="item-product__title">
             <span>BH Chanel</span>
-            {props.title}
+            {title}
           </a>
           <div className="item-product__footer">
             <div className="item-product__old-price grn">23 400</div>
@@ -21,7 +21,7 @@ function Item(props) {
         <div className="item-product__hover hover-item-product">
           <a href="" className="hover-item-product__title">
             <span>BH Chanel</span>
-            Сукня
+            {title}
           </a>
 
           <div className="hover-item-product__options options-item-product">

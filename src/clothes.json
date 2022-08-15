@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "#",
+    "name": "Skirt",
+    "sizes": [36, 38, 40, 42],
+    "price": 800,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 0,
+    "imageUrl": "",
+    "name": "T-Shirt",
+    "sizes": [36, 38, 40, 42],
+    "price": 800,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 0,
+    "imageUrl": "",
+    "name": "Trousers",
+    "sizes": [36, 38, 40, 42],
+    "price": 800,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 0,
+    "imageUrl": "",
+    "name": "Skirt",
+    "sizes": [36, 38, 40, 42],
+    "price": 800,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 0,
+    "imageUrl": "",
+    "name": "Skirt",
+    "sizes": [36, 38, 40, 42],
+    "price": 800,
+    "category": 0,
+    "rating": 4
+  }
+]
