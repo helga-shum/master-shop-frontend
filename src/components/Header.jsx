@@ -25,7 +25,7 @@ function Header() {
               <nav className="menu__body">
                 <ul className="menu__list">
                   {links.map((link, i) => (
-                    <li>
+                    <li key={i}>
                       <a
                         href="#"
                         onClick={() => onActiveLink(i)}

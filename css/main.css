@@ -420,6 +420,10 @@ body._lock {
     font-size: 20px;
   }
 }
+.menu__link._active {
+  border-radius: 20px;
+  background-color: #068;
+}
 
 .icon-menu {
   display: none;
@@ -623,13 +627,13 @@ body._lock {
   }
 }
 .actions-header__item_login {
-  background: url("https://img.icons8.com/ios-filled/30/1A1A1A/login-rounded-down.png") left no-repeat;
+  background: url("https://img.icons8.com/ios-filled/20/1A1A1A/login-rounded-down.png") left no-repeat;
 }
 .actions-header__item_reg {
-  background: url("https://img.icons8.com/external-bearicons-glyph-bearicons/30/000000/external-sign-up-call-to-action-bearicons-glyph-bearicons-1.png") left no-repeat;
+  background: url("https://img.icons8.com/external-bearicons-glyph-bearicons/20/000000/external-sign-up-call-to-action-bearicons-glyph-bearicons-1.png") left no-repeat;
 }
 .actions-header__item_email {
-  background: url("https://img.icons8.com/ios-filled/30/000000/apple-mail.png") left no-repeat;
+  background: url("https://img.icons8.com/ios-filled/20/000000/apple-mail.png") left no-repeat;
 }
 .actions-header__item_email span {
   border-bottom: 1px solid;
@@ -652,7 +656,7 @@ body._lock {
 }
 .actions-header__item__email {
   padding: 0px 0px 0px 36px;
-  background: url("https://img.icons8.com/ios-filled/30/000000/apple-mail.png") left no-repeat;
+  background: url("https://img.icons8.com/ios-filled/20/000000/apple-mail.png") left no-repeat;
   display: inline-block;
   line-height: 24px;
   color: #1ab9ce;
@@ -689,7 +693,7 @@ body._lock {
   padding: 0;
 }
 .info-header__callback {
-  background: url("https://img.icons8.com/ios/30/000000/apple-phone.png") left no-repeat;
+  background: url("https://img.icons8.com/ios/20/000000/apple-phone.png") left no-repeat;
   display: inline-block;
   color: #1ab9ce;
   line-height: 20px;
@@ -705,7 +709,7 @@ body._lock {
   }
 }
 .info-header__schedule {
-  background: url("https://img.icons8.com/ios/30/000000/calendar--v3.png") left no-repeat;
+  background: url("https://img.icons8.com/ios/20/000000/calendar--v3.png") left no-repeat;
   padding: 0px 0px 0px 37px;
   font-size: 12px;
   font-weight: 300;
@@ -951,9 +955,6 @@ body._lock {
   position: relative;
 }
 .menu-page__body {
-  display: none;
-}
-.menu-page__body._active {
   display: block;
 }
 .menu-page__list > li {
@@ -1343,6 +1344,7 @@ body._lock {
   border-bottom: 1px dashed;
 }
 .hover-item-product__stock {
+  padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1551,7 +1553,7 @@ body._lock {
   content: "";
   width: 17px;
   height: 17px;
-  background: url("https://img.icons8.com/ios-filled/30/000000/search--v1.png") 0 0 no-repeat;
+  background: url("https://img.icons8.com/ios-filled/20/000000/search--v1.png") 0 0 no-repeat;
 }
 .search-page__title::after {
   content: "";
@@ -1559,7 +1561,7 @@ body._lock {
   transition: all 0.3s ease 0s;
   width: 10px;
   height: 10px;
-  background: url("https://img.icons8.com/ios/30/000000/long-arrow-down.png") 0 0 no-repeat;
+  background: url("https://img.icons8.com/ios/10/000000/long-arrow-down.png") 0 0 no-repeat;
 }
 .search-page__title._categories span {
   display: none;
@@ -1591,7 +1593,9 @@ body._lock {
 .categories-search {
   border: 1px solid #f3f3f3;
   background-color: #fff;
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   border-bottom: 4px solid #f68038;
 }
 .categories-search::after {
@@ -1602,11 +1606,6 @@ body._lock {
   bottom: 0;
   width: 100%;
   left: 0;
-}
-.categories-search._active {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 .categories-search__column {
   -webkit-box-flex: 0;
@@ -1721,6 +1720,7 @@ body._lock {
 
 .content-mainslider {
   padding: 20px 35px 60px 35px;
+  text-align: left;
 }
 .content-mainslider__title {
   color: #333333;
@@ -1736,11 +1736,10 @@ body._lock {
 }
 .content-mainslider__footer {
   padding: 15px 0px 0px 0px;
-  text-align: center;
 }
 .content-mainslider__price {
   margin: 0px 0px 24px 0px;
-  color: #ffffff;
+  color: #36949f;
   font-size: 36px;
   font-weight: 900;
   line-height: 24px;
@@ -1754,7 +1753,7 @@ body._lock {
 }
 .content-mainslider__button {
   height: 33px;
-  border: 3px solid #ffffff;
+  border: 3px solid #36949f;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -1769,7 +1768,7 @@ body._lock {
 }
 .content-mainslider__button span {
   font-weight: 900;
-  color: #fff;
+  color: #36949f;
   text-transform: uppercase;
   padding: 0px;
 }

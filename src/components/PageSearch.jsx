@@ -265,7 +265,7 @@ function PageSearch() {
       </div>
       <div className="search-page__input">
         <input
-          autocomplete="off"
+          autoComplete="off"
           type="text"
           name="form[]"
           data-error="Помилка"

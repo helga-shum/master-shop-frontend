@@ -11,7 +11,7 @@ function Pagging() {
       <a href="" className="pagging__arrow"></a>
       <ul className="pagging__list">
         {numbers.map((number, i) => (
-          <li>
+          <li key={i}>
             <a
               href="#"
               onClick={() => onClickNumber(i)}
