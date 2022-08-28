@@ -1,7 +1,8 @@
 import logo from '../img/logo.png';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-function Header() {
+import PageSearch from './PageSearch';
+function Header({ searchValue, setSearchValue }) {
   const links = ['Brands', 'Sale', 'Delivery', 'Garanty', 'Payment', 'Contacts'];
   const [cartCount, setCartCount] = useState(0);
   const [activeLink, setActiveLink] = useState(0);
@@ -122,6 +123,7 @@ function Header() {
           </div>
         </div>
       </div>
+      <PageSearch searchValue={searchValue} setSearchValue={setSearchValue} />
     </header>
   );
 }

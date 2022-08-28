@@ -3,12 +3,14 @@ import ProductsSlider from '../components/ProductsSlider';
 
 import React from 'react';
 import CatalogSide from '../components/CatalogSide';
-function Catalog() {
+import PageSearch from '../components/PageSearch';
+function Catalog({ searchValue, setSearchValue }) {
   const [sorting, setSorting] = React.useState(false);
   const [categoryId, setCategoryId] = React.useState(0);
   const [sortType, setSortType] = React.useState({ name: 'Popularuty', sort: 'popularity' });
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [currentPage, setCurrentPage] = React.useState(1);
   const options = [
     { name: 'Popularuty', sort: 'order_number' },
     { name: 'Rating', sort: 'rating' },
@@ -16,10 +18,11 @@ function Catalog() {
   ];
   React.useEffect(() => {
     setIsLoading(true);
+    const search = searchValue ? `&search=${searchValue}` : '';
     fetch(
-      `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?${
+      `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?page=${currentPage}&limit=6${
         categoryId > 0 ? `category=${categoryId}` : ''
-      }&sortBy=${sortType.sort}&order=desc`,
+      }${search}&sortBy=${sortType.sort}&order=desc`,
     )
       .then((res) => {
         return res.json();
@@ -28,8 +31,8 @@ function Catalog() {
         setItems(arr);
         setIsLoading(false);
       });
-  }, [categoryId, sortType]);
-  console.log(sortType, categoryId);
+  }, [categoryId, sortType, searchValue, currentPage]);
+
   return (
     <>
       <CatalogSide categoryId={categoryId} onClickCategory={(i) => setCategoryId(i)} />
@@ -37,6 +40,7 @@ function Catalog() {
       <div classNameName="page__content">
         <div className="catalog">
           <h1 className="catalog__title title-item">Popular goods</h1>
+
           <div className="catalog__actions actions-catalog">
             <div className="actions-catalog__order order-catalog">
               <div className="order-catalog__label">sort by:</div>
@@ -83,7 +87,8 @@ function Catalog() {
               </div>
             </div>
           </div>
-          <ProductsSlider items={items} isLoading={isLoading} />
+          <Pagging onChangePage={(number) => setCurrentPage(number)} />
+          <ProductsSlider items={items} isLoading={isLoading} searchValue={searchValue} />
           <div className="catalog__navi navi-catalog">
             <div className="navi-catalog__show show-catalog">
               <div className="show-catalog__label">On page:</div>
@@ -99,7 +104,7 @@ function Catalog() {
               </div>
             </div>
             <div className="show-catalog__pages">
-              <Pagging />
+              <Pagging onChangePage={(number) => setCurrentPage(number)} />
             </div>
           </div>
         </div>

@@ -11,14 +11,18 @@ import Product from './pages/Product';
 import InfoMenu from './components/InfoMenu';
 import Checkout from './pages/Checkout';
 function App() {
+  const [searchValue, setSearchValue] = React.useState('');
   return (
     <div className="App">
-      <Header />
+      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
       <main className="page">
         <div className="page__container _container">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/catalog" element={<Catalog />} />
+            <Route
+              path="/catalog"
+              element={<Catalog searchValue={searchValue} setSearchValue={setSearchValue} />}
+            />
             <Route path="/product" element={<Product />} />
             <Route path="/checkout" element={<Checkout />} />
           </Routes>

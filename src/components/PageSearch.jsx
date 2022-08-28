@@ -1,5 +1,5 @@
 import React from 'react';
-function PageSearch() {
+function PageSearch({ searchValue, setSearchValue }) {
   const [open, setOpen] = React.useState(false);
   return (
     <form action="#" className="page__search search-page">
@@ -265,6 +265,8 @@ function PageSearch() {
       </div>
       <div className="search-page__input">
         <input
+          value={searchValue}
+          onChange={(event) => setSearchValue(event.target.value)}
           autoComplete="off"
           type="text"
           name="form[]"

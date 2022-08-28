@@ -1,8 +1,23 @@
 import PageSide from '../components/PageSide';
 import ProductNavi from '../components/ProductNavi';
-import ProductsSlider from '../components/ProductsSlider';
+import React from 'react';
+import SameProducts from '../components/SameProducts';
 
 function Product() {
+  const [items, setItems] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setIsLoading(true);
+    fetch('https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?category=2')
+      .then((res) => {
+        return res.json();
+      })
+      .then((arr) => {
+        setItems(arr);
+        setIsLoading(false);
+      });
+  }, []);
   return (
     <>
       <PageSide />
@@ -202,10 +217,7 @@ function Product() {
             </div>
           </div>
         </div>
-        <section className="product__same same-products">
-          <h2 className="same-products__title">Same goods</h2>
-          <ProductsSlider />
-        </section>
+        <SameProducts items={items} isLoading={isLoading} />
       </section>
     </>
   );
