@@ -2,21 +2,8 @@ import Item from './Item';
 import Skeleton from './Skeleton';
 import Pagging from './Pagging';
 import React from 'react';
-
-function ProductsSlider() {
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-  React.useEffect(() => {
-    fetch('https://62fa7a9bffd7197707ed6aa7.mockapi.io/items')
-      .then((res) => {
-        return res.json();
-      })
-      .then((arr) => {
-        setItems(arr);
-        setIsLoading(false);
-      });
-  }, []);
-
+import { Link } from 'react-router-dom';
+function ProductsSlider({ items, isLoading }) {
   return (
     <div className="page__products products-slider">
       <div className="products-slider__header">
@@ -32,7 +19,11 @@ function ProductsSlider() {
           <div className="products-slider__items items-products">
             {isLoading
               ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-              : items.map((obj) => <Item key={obj.id} {...obj} />)}
+              : items.map((obj) => (
+                  <Link to="/product">
+                    <Item key={obj.id} {...obj} />
+                  </Link>
+                ))}
           </div>
         </div>
       </div>

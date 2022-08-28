@@ -2,31 +2,31 @@
   {
     "id": 0,
     "imageUrl": "https://i.postimg.cc/3NGnfPKb/pexels-abel-matthew-11669344.jpg",
-    "title": "Skirt",
+    "title": "Dress",
     "brand": "Chanel",
     "sizes": [36, 38, 40, 42],
-    "price": 800,
-    "category": 3,
+    "price": 210,
+    "category": 1,
     "rating": 4
   },
   {
     "id": 1,
     "imageUrl": "https://i.postimg.cc/1zPPmS0x/pexels-breno-cardoso-11734542.jpg",
-    "title": "T-Shirt",
+    "title": "Dress",
     "brand": "Chanel",
     "sizes": [40],
-    "price": 800,
-    "category": 2,
+    "price": 35,
+    "category": 1,
     "rating": 4
   },
   {
     "id": 2,
     "imageUrl": "https://i.postimg.cc/wMBj6zpx/pexels-polina-tankilevitch-7746386.jpg",
-    "title": "Trousers",
+    "title": "Top",
     "brand": "Chanel",
     "sizes": [34, 36, 38, 40, 42],
-    "price": 800,
-    "category": 4,
+    "price": 96,
+    "category": 5,
     "rating": 4
   },
   {
@@ -35,28 +35,118 @@
     "title": "Skirt",
     "brand": "Chanel",
     "sizes": [36, 38, 40, 42],
-    "price": 800,
+    "price": 72,
     "category": 0,
     "rating": 4
   },
   {
     "id": 4,
     "imageUrl": "https://i.postimg.cc/LsHKdTR2/pexels-ti-u-b-o-tr-ng-8298105.jpg",
-    "title": "Skirt",
+    "title": "Top",
     "brand": "Chanel",
     "sizes": [34, 36],
-    "price": 800,
-    "category": 1,
+    "price": 80,
+    "category": 5,
     "rating": 4
   },
   {
     "id": 5,
     "imageUrl": "https://i.postimg.cc/269f7Bsm/pexels-blue-bird-7243220.jpg",
+    "title": "Shirt",
+    "brand": "Chanel",
+    "sizes": [40, 42],
+    "price": 45,
+    "category": 8,
+    "rating": 4
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://i.postimg.cc/br5GjpvY/pexels-ceejay-talam-9226518.jpg",
+    "title": "Top",
+    "brand": "Chanel",
+    "sizes": [40, 42],
+    "price": 78,
+    "category": 5,
+    "rating": 4
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://i.postimg.cc/qqxmmDBG/pexels-dmitriy-piskarev-11160816.jpg",
+    "title": "Costume",
+    "brand": "Chanel",
+    "sizes": [40, 42],
+    "price": 300,
+    "category": 9,
+    "rating": 4
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://i.postimg.cc/xCx8KnMG/pexels-ekaterina-bolovtsova-5393769.jpg",
     "title": "Skirt",
     "brand": "Chanel",
     "sizes": [40, 42],
-    "price": 800,
+    "price": 432,
     "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://i.postimg.cc/NFBDr882/pexels-arina-krasnikova-5424972.jpg",
+    "title": "Shirt",
+    "brand": "Chanel",
+    "sizes": [40, 42],
+    "price": 90,
+    "category": 8,
+    "rating": 4
+  },
+  {
+    "id": 10,
+    "imageUrl": "https://i.postimg.cc/fTbjnR8s/pexels-erisvan-souza-12414514.jpg",
+    "title": "Jeans",
+    "brand": "Chanel",
+    "sizes": [40, 42],
+    "price": 56,
+    "category": 4,
+    "rating": 4
+  },
+  {
+    "id": 11,
+    "imageUrl": "https://i.postimg.cc/YCZxxBfH/pexels-godisable-jacob-1027160.jpg",
+    "title": "Trousers",
+    "brand": "Chanel",
+    "sizes": [40, 42],
+    "price": 50,
+    "category": 2,
+    "rating": 4
+  },
+  {
+    "id": 12,
+    "imageUrl": "https://i.postimg.cc/fbS84RTy/pexels-keletso-mphuthi-9773156.jpg",
+    "title": "Shirt",
+    "brand": "Chanel",
+    "sizes": [40, 42],
+    "price": 231,
+    "category": 3,
+    "rating": 4
+  },
+  {
+    "id": 13,
+    "imageUrl": "https://i.postimg.cc/HL078q63/pexels-sir-lodi-11076392.jpg",
+    "title": "Top",
+    "brand": "Chanel",
+    "sizes": [40, 42],
+    "price": 123,
+    "category": 5,
+    "rating": 4
+  },
+  {
+    "id": 14,
+    "imageUrl": "https://i.postimg.cc/L6mQqSvQ/pexels-kevin-malik-9032464.jpg",
+    "title": "Sweater",
+    "brand": "Chanel",
+    "sizes": [40, 42],
+    "price": 123,
+    "category": 6,
     "rating": 4
   }
 ]

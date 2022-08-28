@@ -960,6 +960,11 @@ body._lock {
 .menu-page__list > li {
   border-bottom: 1px solid #fff;
 }
+@media (min-width: 991.98px) {
+  .menu-page__list > li:hover {
+    background-color: #000;
+  }
+}
 .menu-page__parent {
   z-index: 4;
 }
@@ -2800,6 +2805,17 @@ body._lock {
     margin: 0px 0px 15px 0px;
   }
 }
+.order-option {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+.order-option:hover {
+  background-color: #ddd;
+}
+
 @media (min-width: 540px) {
   .order-catalog {
     -webkit-box-flex: 1;
@@ -2824,6 +2840,30 @@ body._lock {
     margin: 0px 0px 10px 0px;
   }
 }
+.order-catalog__select {
+  position: relative;
+  display: inline-block;
+}
+.order-catalog__btn {
+  background-color: #3498db;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.order-catalog__btn:hover, .order-catalog__btn:focus {
+  background-color: #2980b9;
+}
+.order-catalog__content {
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
 .view-catalog {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3119,7 +3159,7 @@ body._lock {
   text-transform: uppercase;
 }
 .body-product__compare span {
-  background: url("https://img.icons8.com/ios-filled/50/000000/compare.png") left no-repeat;
+  background: url("https://img.icons8.com/ios-filled/30/000000/compare.png") left no-repeat;
   padding: 0px 0px 0px 35px;
   line-height: 21px;
 }
@@ -3194,7 +3234,7 @@ body._lock {
 }
 .actions-product__cart::after {
   content: "";
-  background: url("https://img.icons8.com/ios-filled/50/000000/shopping-basket-2.png") right no-repeat;
+  background: url("https://img.icons8.com/ios-filled/30/000000/shopping-basket-2.png") right no-repeat;
   width: 57px;
   height: 57px;
   position: absolute;

@@ -5,11 +5,14 @@ import Slider from '../components/Slider';
 
 function Home() {
   return (
-    <div className="page__content">
-      <PageSearch />
-      <Slider />
-      <ProductsSlider />
-    </div>
+    <>
+      <PageSide />
+      <div className="page__content">
+        <PageSearch />
+        <Slider />
+        <ProductsSlider />
+      </div>
+    </>
   );
 }
 

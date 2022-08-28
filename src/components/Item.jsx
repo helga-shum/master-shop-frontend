@@ -1,5 +1,16 @@
 function Item({ title, imageUrl, id, brand, sizes, price, category, rating }) {
-  const types = ['Skirts', 'Dresses', 'Trousers', 'T-shirts', 'Jeans'];
+  const types = [
+    'Skirts',
+    'Dresses',
+    'Trousers',
+    'T-shirts',
+    'Jeans',
+    'Tops',
+    'Sweaters',
+
+    'Shirts',
+    'Costumes',
+  ];
   return (
     <div className="items-products__column">
       <div className="item-product">

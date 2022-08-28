@@ -1,4 +1,8 @@
-.form {
+.form-option {
+  border-color: #b86029;
+  &:active {
+    background-color: #353535;
+  }
 }
 .btn {
   display: inline-flex;

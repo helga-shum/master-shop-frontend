@@ -1,5 +1,6 @@
 import logo from '../img/logo.png';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 function Header() {
   const links = ['Brands', 'Sale', 'Delivery', 'Garanty', 'Payment', 'Contacts'];
   const [cartCount, setCartCount] = useState(0);
@@ -38,11 +39,13 @@ function Header() {
               </nav>
             </div>
           </div>
-          <div className="top-header__column top-header__column_logo">
-            <a href="" className="top-header__logo">
-              <img src={logo} alt="" />
-            </a>
-          </div>
+          <Link to="/">
+            <div className="top-header__column top-header__column_logo">
+              <div className="top-header__logo">
+                <img src={logo} alt="" />
+              </div>
+            </div>
+          </Link>
           <div className="top-header__column">
             <div className="top-header__contacts contacts-header">
               <div className="contacts-header__column">
@@ -108,11 +111,13 @@ function Header() {
                   </p>
                 </div>
               </div>
-              <button onClick={onClickBtn} className="info-header__column">
-                <div className="info-header__cart">
-                  <span>{cartCount}</span>
-                </div>
-              </button>
+              <Link to="/checkout">
+                <button onClick={onClickBtn} className="info-header__column">
+                  <div className="info-header__cart">
+                    <span>{cartCount}</span>
+                  </div>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

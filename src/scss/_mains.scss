@@ -167,6 +167,11 @@
   &__list {
     > li {
       border-bottom: 1px solid #fff;
+      @media (min-width: $md2+px) {
+        &:hover {
+          background-color: #000;
+        }
+      }
     }
   }
   &__parent {
@@ -187,6 +192,7 @@
         }
       }
     }
+
     &._active {
       .search-page {
         z-index: 3;
