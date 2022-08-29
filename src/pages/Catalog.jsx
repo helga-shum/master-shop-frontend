@@ -3,8 +3,10 @@ import ProductsSlider from '../components/ProductsSlider';
 
 import React from 'react';
 import CatalogSide from '../components/CatalogSide';
-import PageSearch from '../components/PageSearch';
-function Catalog({ searchValue, setSearchValue }) {
+import { SearchContext } from '../App';
+
+function Catalog() {
+  const { searchValue } = React.useContext(SearchContext);
   const [sorting, setSorting] = React.useState(false);
   const [categoryId, setCategoryId] = React.useState(0);
   const [sortType, setSortType] = React.useState({ name: 'Popularuty', sort: 'popularity' });

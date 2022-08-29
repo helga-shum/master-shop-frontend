@@ -1,5 +1,7 @@
 import React from 'react';
-function PageSearch({ searchValue, setSearchValue }) {
+import { SearchContext } from '../App';
+function PageSearch() {
+  const { searchValue, setSearchValue } = React.useContext(SearchContext);
   const [open, setOpen] = React.useState(false);
   return (
     <form action="#" className="page__search search-page">

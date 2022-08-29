@@ -10,27 +10,27 @@ import Catalog from './pages/Catalog';
 import Product from './pages/Product';
 import InfoMenu from './components/InfoMenu';
 import Checkout from './pages/Checkout';
+export const SearchContext = React.createContext('');
 function App() {
   const [searchValue, setSearchValue] = React.useState('');
   return (
     <div className="App">
-      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
-      <main className="page">
-        <div className="page__container _container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/catalog"
-              element={<Catalog searchValue={searchValue} setSearchValue={setSearchValue} />}
-            />
-            <Route path="/product" element={<Product />} />
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
-        </div>
-        <InfoMenu />
-      </main>
+      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+        <Header />
+        <main className="page">
+          <div className="page__container _container">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/checkout" element={<Checkout />} />
+            </Routes>
+          </div>
+          <InfoMenu />
+        </main>
 
-      <Footer />
+        <Footer />
+      </SearchContext.Provider>
     </div>
   );
 }
