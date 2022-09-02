@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SectionFilter({ title, options }) {
+function FabricFilter() {
   const [filter, setFilter] = React.useState(false);
   const [spoller, setSpoller] = React.useState(false);
 
@@ -16,37 +16,37 @@ function SectionFilter({ title, options }) {
             ? 'section-filter__title _spoller _active'
             : 'section-filter__title _spoller'
         }>
-        {title}
+        Fabric type
       </div>
       <div className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
         <label className="section-filter__checkbox checkbox">
           <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
           <span className="checkbox__text">
-            <span>Clear-fit</span>
+            <span>Linen</span>
           </span>
         </label>
         <label className="section-filter__checkbox checkbox">
           <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
           <span className="checkbox__text">
-            <span>Diadora</span>
+            <span>Polyester</span>
           </span>
         </label>
         <label className="section-filter__checkbox checkbox">
           <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
           <span className="checkbox__text">
-            <span>Hasttings</span>
+            <span>Crepe</span>
           </span>
         </label>
         <label className="section-filter__checkbox checkbox">
           <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
           <span className="checkbox__text">
-            <span>Carbon-fitness</span>
+            <span>Denim</span>
           </span>
         </label>
         <label className="section-filter__checkbox checkbox">
           <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
           <span className="checkbox__text">
-            <span>Snacks</span>
+            <span>Cotton</span>
           </span>
         </label>
       </div>
@@ -54,4 +54,4 @@ function SectionFilter({ title, options }) {
   );
 }
 
-export default SectionFilter;
+export default FabricFilter;

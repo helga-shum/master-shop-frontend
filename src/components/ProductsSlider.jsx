@@ -3,7 +3,7 @@ import Skeleton from './Skeleton';
 import Pagging from './Pagging';
 import React from 'react';
 import { Link } from 'react-router-dom';
-function ProductsSlider({ items, isLoading, searchValue }) {
+function ProductsSlider({ items, isLoading }) {
   const clothes = items.map((obj) => (
     <Link to="/product">
       <Item key={obj.id} {...obj} />

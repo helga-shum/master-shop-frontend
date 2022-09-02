@@ -1,57 +1,16 @@
 import React from 'react';
-import SectionFilter from './SectionFilter';
+import BrandFilter from './filters/BrandFilter';
+import FabricFilter from './filters/FabricFilter';
+import PriceFilter from './filters/PriceFilter';
+import SizeFilter from './filters/SizeFilter';
+
 function SideFilter() {
   return (
     <form action="#" className="filter">
       <div className="filter__title">Goods filter</div>
       <div className="filter__content">
         <div className="filter__body _spollers">
-          <div className="filter__section section-filter">
-            <div className="section-filter__title">prise(grn):</div>
-            <div className="section-filter__body">
-              <div className="price-filter">
-                <div className="price-filter__values values-price-filter">
-                  <div className="values-price-filter__column">
-                    <div className="values-price-filter__label">from</div>
-                    <div className="values-price-filter__input">
-                      <input
-                        id="price-start"
-                        autocomplete="off"
-                        type="text"
-                        name="from[]"
-                        className="input"
-                      />
-                    </div>
-                  </div>
-                  <div className="values-price-filter__column">
-                    <div className="values-price-filter__label">to</div>
-                    <div className="values-price-filter__input">
-                      <input
-                        id="price-end"
-                        autocomplete="off"
-                        type="text"
-                        name="from[]"
-                        className="input"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="price-filter noUi-target">
-                <div className="noUi-base">
-                  <div className="noUi-connects">
-                    <div className="noUi-connect"></div>
-                  </div>
-                  <div className="noUi-origin">
-                    <div className="noUi-handle">
-                      <div className="noUi-touch-area"></div>
-                      <div className="noUi-tooltip"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <PriceFilter />
           <div className="filter__section section-filter">
             <div className="section-filter__title">Goods for comparison</div>
             <div className="section-filter__body ">
@@ -85,10 +44,9 @@ function SideFilter() {
               </div>
             </div>
           </div>
-          <SectionFilter />
-          <SectionFilter />
-          <SectionFilter />
-          <SectionFilter />
+          <SizeFilter />
+          <FabricFilter />
+          <BrandFilter />
         </div>
         <div className="filter__footer">
           <button type="submit" className="filter__btn btn">

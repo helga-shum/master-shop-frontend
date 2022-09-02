@@ -1,43 +1,54 @@
 import Pagging from '../components/Pagging';
 import ProductsSlider from '../components/ProductsSlider';
-
+import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import CatalogSide from '../components/CatalogSide';
 import { SearchContext } from '../App';
+import { setCategoryId, setSortType } from '../redux/slices/filterSlice';
+import axios from 'axios';
 
 function Catalog() {
+  const sortType = useSelector((state) => state.filterSlice.sortType);
+  const categoryId = useSelector((state) => state.filterSlice.categoryId);
+  const dispatch = useDispatch();
+
   const { searchValue } = React.useContext(SearchContext);
   const [sorting, setSorting] = React.useState(false);
-  const [categoryId, setCategoryId] = React.useState(0);
-  const [sortType, setSortType] = React.useState({ name: 'Popularuty', sort: 'popularity' });
+
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
+
   const options = [
     { name: 'Popularuty', sort: 'order_number' },
     { name: 'Rating', sort: 'rating' },
     { name: 'Price', sort: 'price' },
   ];
+  const onClickCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
+  const onClickSortType = (id) => {
+    dispatch(setSortType(id));
+  };
   React.useEffect(() => {
     setIsLoading(true);
     const search = searchValue ? `&search=${searchValue}` : '';
-    fetch(
-      `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?page=${currentPage}&limit=6${
-        categoryId > 0 ? `category=${categoryId}` : ''
-      }${search}&sortBy=${sortType.sort}&order=desc`,
-    )
+
+    axios
+      .get(
+        `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?${
+          categoryId > 0 ? `category=${categoryId}` : ''
+        }${search}&sortBy=${sortType.sort}&order=desc`,
+      )
       .then((res) => {
-        return res.json();
-      })
-      .then((arr) => {
-        setItems(arr);
+        setItems(res.data);
         setIsLoading(false);
       });
   }, [categoryId, sortType, searchValue, currentPage]);
 
   return (
     <>
-      <CatalogSide categoryId={categoryId} onClickCategory={(i) => setCategoryId(i)} />
+      <CatalogSide categoryId={categoryId} onClickCategory={onClickCategory} />
 
       <div classNameName="page__content">
         <div className="catalog">
@@ -58,7 +69,7 @@ function Catalog() {
                   {options.map((obj, i) => (
                     <div
                       onClick={() => {
-                        setSortType(obj);
+                        onClickSortType(obj);
                       }}
                       className={
                         sortType.sort == obj.sort ? 'order-option _active' : 'order-option'

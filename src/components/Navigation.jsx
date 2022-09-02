@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 function Navigation({ categoryId, onClickCategory }) {
-  const [activeType, setActiveType] = React.useState(0);
-
   const types = [
     'All',
     'Skirts',
@@ -16,7 +14,6 @@ function Navigation({ categoryId, onClickCategory }) {
     'Shirts',
     'Costumes',
   ];
-  const [submenu, setSubmenu] = React.useState(0);
 
   const [navi, setNavi] = React.useState(false);
   return (
