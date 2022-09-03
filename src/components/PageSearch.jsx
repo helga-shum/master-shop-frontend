@@ -1,274 +1,40 @@
 import React from 'react';
+import debounce from 'lodash.debounce';
 import { SearchContext } from '../App';
 function PageSearch() {
-  const { searchValue, setSearchValue } = React.useContext(SearchContext);
-  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState('');
+  const { setSearchValue } = React.useContext(SearchContext);
+  const inputRef = React.useRef();
+  const updateSearchValue = React.useCallback(
+    debounce((str) => {
+      setSearchValue(str);
+    }, 1000),
+    [],
+  );
+  const onClickClear = () => {
+    setSearchValue('');
+    setValue('');
+    inputRef.current.focus();
+  };
+
+  const onChangeInput = (event) => {
+    setValue(event.target.value);
+    updateSearchValue(event.target.value);
+  };
   return (
     <form action="#" className="page__search search-page">
       <div className="search-page__select">
-        <div
-          onClick={() => setOpen(!open)}
-          className={open == true ? 'search-page__title _active' : 'search-page__title'}>
+        <div className="search-page__title">
           <span>Everywhere</span>
           <span data-text="Select:" className="search-page__quantity"></span>
         </div>
-        {open && (
-          <div className="search-page__categories categories-search">
-            <div className="categories-search__row">
-              <div className="categories-search__column">
-                <ul className="categories-search__list">
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div className="categories-search__column">
-                <ul className="categories-search__list">
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div className="categories-search__column">
-                <ul className="categories-search__list">
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="section-filter__checkbox checkbox">
-                      <input
-                        data-error="Error"
-                        type="checkbox"
-                        className="checkbox__input"
-                        value="1"
-                      />
-                      <span className="checkbox__text">
-                        <span>Сукні</span>
-                      </span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
       <div className="search-page__input">
         <input
-          value={searchValue}
-          onChange={(event) => setSearchValue(event.target.value)}
+          ref={inputRef}
+          placeholder="Finding the good..."
+          value={value}
+          onChange={onChangeInput}
           autoComplete="off"
           type="text"
           name="form[]"
@@ -277,7 +43,13 @@ function PageSearch() {
           className="input"
         />
       </div>
-      <button className="search-page__btn btn">Задати питання</button>
+
+      {value && (
+        <button onClick={onClickClear} className="search-page__clean">
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/multiply.png" />
+        </button>
+      )}
+      <button className="search-page__btn btn">Take a question</button>
     </form>
   );
 }

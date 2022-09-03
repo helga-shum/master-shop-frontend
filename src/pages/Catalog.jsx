@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import CatalogSide from '../components/CatalogSide';
 import { SearchContext } from '../App';
-import { setCategoryId, setSortType } from '../redux/slices/filterSlice';
+import { setCategoryId, setSortType, setCurrentPage } from '../redux/slices/filterSlice';
 import axios from 'axios';
 
 function Catalog() {
   const sortType = useSelector((state) => state.filterSlice.sortType);
   const categoryId = useSelector((state) => state.filterSlice.categoryId);
+  const currentPage = useSelector((state) => state.filterSlice.currentPage);
   const dispatch = useDispatch();
 
   const { searchValue } = React.useContext(SearchContext);
@@ -17,7 +18,6 @@ function Catalog() {
 
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentPage, setCurrentPage] = React.useState(1);
 
   const options = [
     { name: 'Popularuty', sort: 'order_number' },
@@ -30,6 +30,9 @@ function Catalog() {
   const onClickSortType = (id) => {
     dispatch(setSortType(id));
   };
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
+  };
   React.useEffect(() => {
     setIsLoading(true);
     const search = searchValue ? `&search=${searchValue}` : '';
@@ -38,7 +41,7 @@ function Catalog() {
       .get(
         `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?${
           categoryId > 0 ? `category=${categoryId}` : ''
-        }${search}&sortBy=${sortType.sort}&order=desc`,
+        }${search}&sortBy=${sortType.sort}&order=desc&page=${currentPage}&limit=3`,
       )
       .then((res) => {
         setItems(res.data);
@@ -117,7 +120,7 @@ function Catalog() {
               </div>
             </div>
             <div className="show-catalog__pages">
-              <Pagging onChangePage={(number) => setCurrentPage(number)} />
+              <Pagging onChangePage={(number) => onChangePage(number)} />
             </div>
           </div>
         </div>

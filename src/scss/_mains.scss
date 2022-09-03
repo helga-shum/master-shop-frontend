@@ -33,7 +33,7 @@
   &__search {
     position: relative;
     z-index: 2;
-    margin: 0px 0px 22px 0px;
+    margin: 20px 100px;
   }
   &__slider {
     margin: 0px 0px 75px 0px;
@@ -1292,4 +1292,8 @@
       }
     }
   }
+}
+textarea:focus,
+input:focus {
+  outline: none;
 }
