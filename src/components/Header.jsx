@@ -2,13 +2,13 @@ import logo from '../img/logo.png';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageSearch from './PageSearch';
+import { useSelector } from 'react-redux';
 function Header() {
+  const { items, totalPrice } = useSelector((state) => state.cartSlice);
   const links = ['Brands', 'Sale', 'Delivery', 'Garanty', 'Payment', 'Contacts'];
-  const [cartCount, setCartCount] = useState(0);
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   const [activeLink, setActiveLink] = useState(0);
-  const onClickBtn = () => {
-    setCartCount(cartCount + 1);
-  };
+
   const onActiveLink = (index) => {
     setActiveLink(index);
   };
@@ -113,9 +113,12 @@ function Header() {
                 </div>
               </div>
               <Link to="/checkout">
-                <button onClick={onClickBtn} className="info-header__column">
+                <button className="info-header__column">
                   <div className="info-header__cart">
-                    <span>{cartCount}</span>
+                    <span>{totalCount}</span>
+                  </div>
+                  <div className="info-header__cart">
+                    <span>{totalPrice}</span>
                   </div>
                 </button>
               </Link>

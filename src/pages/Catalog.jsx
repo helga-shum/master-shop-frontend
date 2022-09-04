@@ -4,10 +4,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import CatalogSide from '../components/CatalogSide';
 import { SearchContext } from '../App';
-import { setCategoryId, setSortType, setCurrentPage } from '../redux/slices/filterSlice';
+import {
+  setCategoryId,
+  setSortType,
+  setCurrentPage,
+  setFilters,
+} from '../redux/slices/filterSlice';
 import axios from 'axios';
+import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
 
 function Catalog() {
+  const navigate = useNavigate();
   const sortType = useSelector((state) => state.filterSlice.sortType);
   const categoryId = useSelector((state) => state.filterSlice.categoryId);
   const currentPage = useSelector((state) => state.filterSlice.currentPage);
@@ -34,6 +42,18 @@ function Catalog() {
     dispatch(setCurrentPage(number));
   };
   React.useEffect(() => {
+    if (window.Geolocation.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      const sort = options.find((obj) => obj.sort == params.sortType);
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        }),
+      );
+    }
+  }, []);
+  React.useEffect(() => {
     setIsLoading(true);
     const search = searchValue ? `&search=${searchValue}` : '';
 
@@ -48,7 +68,27 @@ function Catalog() {
         setIsLoading(false);
       });
   }, [categoryId, sortType, searchValue, currentPage]);
-
+  React.useEffect(() => {
+    const queryString = qs.stringify({
+      sortProperty: sortType.sort,
+      categoryId,
+      currentPage,
+    });
+    navigate(`?${queryString}`);
+  }, [categoryId, sortType, currentPage]);
+  const sortRef = React.useRef();
+  React.useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (!event.path.includes(sortRef.current)) {
+        setSorting(false);
+        console.log('click outside');
+      }
+    };
+    document.body.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.body.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
   return (
     <>
       <CatalogSide categoryId={categoryId} onClickCategory={onClickCategory} />
@@ -58,7 +98,7 @@ function Catalog() {
           <h1 className="catalog__title title-item">Popular goods</h1>
 
           <div className="catalog__actions actions-catalog">
-            <div className="actions-catalog__order order-catalog">
+            <div ref={sortRef} className="actions-catalog__order order-catalog">
               <div className="order-catalog__label">sort by:</div>
 
               <div className="order-catalog__select">

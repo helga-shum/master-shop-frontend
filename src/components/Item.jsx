@@ -1,4 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../redux/slices/cartSlice';
+import { Link } from 'react-router-dom';
 function Item({ title, imageUrl, id, brand, sizes, price, category, rating }) {
+  const cartItem = useSelector((state) => state.cartSlice.items.find((obj) => obj.id == id));
+  const dispatch = useDispatch();
   const types = [
     'Skirts',
     'Dresses',
@@ -11,6 +16,16 @@ function Item({ title, imageUrl, id, brand, sizes, price, category, rating }) {
     'Shirts',
     'Costumes',
   ];
+  const onClickAdd = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+    };
+    dispatch(addItem(item));
+  };
+  const addedCount = cartItem ? cartItem.count : 0;
   return (
     <div className="items-products__column">
       <div className="item-product">
@@ -50,10 +65,14 @@ function Item({ title, imageUrl, id, brand, sizes, price, category, rating }) {
               <div className="options-item-product__value">{rating}/5</div>
             </div>
           </div>
-          <a href="" className="hover-item-product__cart"></a>
+          <button onClick={onClickAdd} className="hover-item-product__cart"></button>
+          {addedCount > 0 && <span>{addedCount}</span>}
           <div className="hover-item-product__footer">
             <div className="hover-item-product__old-price grn">64 990</div>
             <div className="hover-item-product__stock">There is available</div>
+            <Link to="/product">
+              <button className="hover-item-product__stock">More information</button>
+            </Link>
             <div className="hover-item-product__price grn">64990</div>
           </div>
         </div>

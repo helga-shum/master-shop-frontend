@@ -1,7 +1,22 @@
+import CartItem from '../components/CartItem';
 import CheckoutNavi from '../components/CheckoutNavi';
 import PageSide from '../components/PageSide';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearItems } from '../redux/slices/cartSlice';
+import CartEmpty from '../components/CartEmpty';
 
 function Checkout() {
+  const { items, totalPrice } = useSelector((state) => state.cartSlice);
+  const dispatch = useDispatch();
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const onClickClear = () => {
+    if (window.confirm('Are you sure?')) {
+      dispatch(clearItems());
+    }
+  };
+  if (!totalCount) {
+    return <CartEmpty />;
+  }
   return (
     <>
       <PageSide />
@@ -101,94 +116,22 @@ function Checkout() {
         <div class="checkout__order order-checkout">
           <div class="order-checkout__title title-checkout">Your order</div>
           <div class="order-checkout__items">
-            <div class="order-checkout__item item-order">
-              <div class="item-order__content">
-                <a href="" class="item-order__image">
-                  <img src="./img/skirt.jpg" alt="" />
-                </a>
-                <div class="item-order__body">
-                  <div class="item-order__title">
-                    <span>BH Fitness F1</span>
-                  </div>
-                  <div class="item-order__price grn">65000</div>
-                </div>
-              </div>
-              <div class="item-order__quantity">
-                <div class="quantity">
-                  <div class="quantity__button quantity__button_minus"></div>
-                  <div class="quantity__input">
-                    <input autocomplete="off" type="text" name="form[]" value="1" />
-                  </div>
-                  <div class="quantity__button quantity__button_plus"></div>
-                </div>
-              </div>
-              <div class="item-order__total">
-                <div class="item-order__label">Sum of goods:</div>
-                <div class="item-order__price grn">65000</div>
-              </div>
-              <a href="" class="item-order__delete"></a>
-            </div>
-            <div class="order-checkout__item item-order">
-              <div class="item-order__content">
-                <a href="" class="item-order__image">
-                  <img src="./img/skirt.jpg" alt="" />
-                </a>
-                <div class="item-order__body">
-                  <div class="item-order__title">
-                    <span>BH Fitness F1</span>
-                  </div>
-                  <div class="item-order__price grn">65000</div>
-                </div>
-              </div>
-              <div class="item-order__quantity">
-                <div class="quantity">
-                  <div class="quantity__button quantity__button_minus"></div>
-                  <div class="quantity__input">
-                    <input autocomplete="off" type="text" name="form[]" value="1" />
-                  </div>
-                  <div class="quantity__button quantity__button_plus"></div>
-                </div>
-              </div>
-              <div class="item-order__total">
-                <div class="item-order__label">Sum of goods:</div>
-                <div class="item-order__price grn">65000</div>
-              </div>
-              <a href="" class="item-order__delete"></a>
-            </div>
-            <div class="order-checkout__item item-order">
-              <div class="item-order__content">
-                <a href="" class="item-order__image">
-                  <img src="./img/skirt.jpg" alt="" />
-                </a>
-                <div class="item-order__body">
-                  <div class="item-order__title">
-                    <span>BH Fitness F1</span>
-                  </div>
-                  <div class="item-order__price grn">65000</div>
-                </div>
-              </div>
-              <div class="item-order__quantity">
-                <div class="quantity">
-                  <div class="quantity__button quantity__button_minus"></div>
-                  <div class="quantity__input">
-                    <input autocomplete="off" type="text" name="form[]" value="1" />
-                  </div>
-                  <div class="quantity__button quantity__button_plus"></div>
-                </div>
-              </div>
-              <div class="item-order__total">
-                <div class="item-order__label">Sum of goods:</div>
-                <div class="item-order__price grn">65000</div>
-              </div>
-              <a href="" class="item-order__delete"></a>
-            </div>
+            {items.map((item) => (
+              <CartItem key={item.id} {...item} />
+            ))}
           </div>
           <div class="order-checkout__footer">
             <div class="order-checkout__total">
-              in conclusion: <span class="grn">120000</span>
+              in conclusion total sum: <span class="grn">{totalPrice}</span>
+            </div>
+            <div class="order-checkout__total">
+              in conclusion total count: <span class="grn">{totalCount}</span>
             </div>
             <button type="submit" class="order-checkout__btn btn">
               Make an order
+            </button>
+            <button onClick={onClickClear} type="submit" class="order-checkout__btn btn">
+              Clear the cart
             </button>
           </div>
         </div>
