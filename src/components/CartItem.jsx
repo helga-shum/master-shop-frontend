@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItem, removeItem, minusItem } from '../redux/slices/cartSlice';
 
 function CartItem({ id, title, price, count, imageUrl }) {
@@ -15,11 +15,12 @@ function CartItem({ id, title, price, count, imageUrl }) {
       dispatch(removeItem(id));
     }
   };
+  const totalPriceItem = price * count;
   return (
     <div class="order-checkout__item item-order">
       <div class="item-order__content">
         <a href="" class="item-order__image">
-          <img src={imageUrl} alt="" />
+          <img src={imageUrl[0]} alt="" />
         </a>
         <div class="item-order__body">
           <div class="item-order__title">
@@ -39,7 +40,7 @@ function CartItem({ id, title, price, count, imageUrl }) {
       </div>
       <div class="item-order__total">
         <div class="item-order__label">Sum of goods:</div>
-        <div class="item-order__price grn">65000</div>
+        <div class="item-order__price grn">{totalPriceItem}</div>
       </div>
       <button onClick={onClickRemove} class="item-order__delete"></button>
     </div>

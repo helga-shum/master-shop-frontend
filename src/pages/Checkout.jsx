@@ -17,6 +17,7 @@ function Checkout() {
   if (!totalCount) {
     return <CartEmpty />;
   }
+
   return (
     <>
       <PageSide />
@@ -117,7 +118,7 @@ function Checkout() {
           <div class="order-checkout__title title-checkout">Your order</div>
           <div class="order-checkout__items">
             {items.map((item) => (
-              <CartItem key={item.id} {...item} />
+              <CartItem key={item.id} {...item} totalPrice={totalPrice} />
             ))}
           </div>
           <div class="order-checkout__footer">

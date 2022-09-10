@@ -1,67 +1,60 @@
 import PageSide from '../components/PageSide';
-import ProductNavi from '../components/ProductNavi';
+
 import React from 'react';
 import SameProducts from '../components/SameProducts';
+import { addItem, minusItem } from '../redux/slices/cartSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 function Product() {
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    setIsLoading(true);
-    fetch('https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?category=2')
-      .then((res) => {
-        return res.json();
-      })
-      .then((arr) => {
-        setItems(arr);
-        setIsLoading(false);
-      });
-  }, []);
+  const { id, title, price, imageUrl, brand, description, measures, procent } = useSelector(
+    (state) => state.productSlice.item,
+  );
+  const onClickPlus = () => {
+    dispatch(addItem({ id }));
+  };
+  const onClickMinus = () => {
+    dispatch(minusItem(id));
+  };
+  const [activeNavy, setActiveNavy] = React.useState('Description');
+
+  const onClickAdd = () => {
+    const item = {
+      id,
+      title,
+      price,
+      imageUrl,
+    };
+    dispatch(addItem(item));
+  };
+  const cartItem = useSelector((state) => state.cartSlice.items.find((obj) => obj.id == id));
+  const addedCount = cartItem ? cartItem.count : 0;
   return (
     <>
       <PageSide />
       <section className="product">
         <h1 className="product__title">
-          BH Clothes<span>Skirt</span>
+          {brand}
+          <span>{title}</span>
         </h1>
         <div className="product__content">
           <div className="product__images images-product">
             <div className="images-product__mainslider _swiper">
               <a href="" className="images-product__mainslide">
-                <div className="images-product__sale">-15%</div>
+                <div className="images-product__sale">-{procent}%</div>
                 <div className="images-product__image">
-                  <img
-                    src="https://i.postimg.cc/QN6MfFQF/pexels-polina-tankilevitch-7746279.jpg"
-                    alt=""
-                  />
+                  <img src={imageUrl[0]} alt="1" />
                 </div>
               </a>
             </div>
             <div className="images-product__subslider _swiper">
               <div className="images-product__subslide">
-                <div className="images-product__subimage">
-                  <img
-                    src="https://i.postimg.cc/QN6MfFQF/pexels-polina-tankilevitch-7746279.jpg"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="images-product__subslide">
-                <div className="images-product__subimage">
-                  <img
-                    src="https://i.postimg.cc/ZnDKnQb8/pexels-polina-tankilevitch-7746440.jpg"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="images-product__subslide">
-                <div className="images-product__subimage">
-                  <img
-                    src="https://i.postimg.cc/W1ZbpSQZ/pexels-polina-tankilevitch-7746256.jpg"
-                    alt=""
-                  />
-                </div>
+                {imageUrl.map((image) => (
+                  <div className="images-product__subimage">
+                    <img src={image} alt="" />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -76,21 +69,25 @@ function Product() {
               <div className="actions-product__row">
                 <div className="actions-product__column">
                   <div className="actions-product__price actions-product__price_old">69000</div>
-                  <div className="actions-product__price grn">64000</div>
+                  <div className="actions-product__price grn">{price}</div>
                 </div>
                 <div className="actions-product__column">
                   <div className="actions-product__quantity quantity">
-                    <div className="quantity__button quantity__button_minus"></div>
+                    <div
+                      onClick={onClickMinus}
+                      className="quantity__button quantity__button_minus"></div>
                     <div className="quantity__input">
-                      <input autocomplete="off" type="text" name="form[]" value="1" />
+                      <input autocomplete="off" type="text" name="form[]" value={addedCount} />
                     </div>
-                    <div className="quantity__button quantity__button_plus"></div>
+                    <div
+                      onClick={onClickPlus}
+                      className="quantity__button quantity__button_plus"></div>
                   </div>
                 </div>
                 <div className="actions-product__column">
-                  <a href="" className="actions-product__cart">
+                  <button onClick={onClickAdd} className="actions-product__cart">
                     <span>Add to cart</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -121,13 +118,40 @@ function Product() {
               </div>
             </div>
           </div>
-          <div className="product__body"></div>
         </div>
         <div className="product__info info-product _tabs">
-          <ProductNavi />
+          <nav className="content-checkout__nav">
+            <div
+              onClick={() => {
+                setActiveNavy('Description');
+              }}
+              className={
+                activeNavy == 'Description'
+                  ? 'content-checkout__item _tabs-item _active'
+                  : 'content-checkout__item _tabs-item'
+              }>
+              Description
+            </div>
+            <div
+              onClick={() => {
+                setActiveNavy('Measures');
+              }}
+              className={
+                activeNavy == 'Measures'
+                  ? 'content-checkout__item _tabs-item _active'
+                  : 'content-checkout__item _tabs-item'
+              }>
+              Measures
+            </div>
+          </nav>
 
           <div className="info-product__body">
-            <div className="info-product__block _tabs-block _active">
+            <div
+              className={
+                activeNavy == 'Description'
+                  ? 'info-product__block _tabs-block _active'
+                  : 'info-product__block _tabs-block'
+              }>
               <p>
                 It is a long established fact that a reader will be distracted by the readable
                 content of a page when looking at its layout. The point of using Lorem Ipsum is that
@@ -163,61 +187,27 @@ function Product() {
                 <br />
               </p>
             </div>
-            <div className="info-product__block _tabs-block">
+            <div
+              className={
+                activeNavy == 'Measures'
+                  ? 'info-product__block _tabs-block _active'
+                  : 'info-product__block _tabs-block'
+              }>
               <table className="info-product__table">
-                <tr>
-                  <td>
-                    <div className="info-product__label">Using</div>
-                  </td>
-                  <td>
-                    <div className="info-product__value">Professional</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="info-product__label">Using</div>
-                  </td>
-                  <td>
-                    <div className="info-product__value">Professional</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="info-product__label">Using</div>
-                  </td>
-                  <td>
-                    <div className="info-product__value">Professional</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="info-product__label">Using</div>
-                  </td>
-                  <td>
-                    <div className="info-product__value">Professional</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="info-product__label">Using</div>
-                  </td>
-                  <td>
-                    <div className="info-product__value">Professional</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="info-product__label">Using</div>
-                  </td>
-                  <td>
-                    <div className="info-product__value">Professional</div>
-                  </td>
-                </tr>
+                {measures.map((measure) => (
+                  <tr>
+                    <td>
+                      <div className="info-product__label">{measure.name}</div>
+                    </td>
+                    <td>
+                      <div className="info-product__value">{measure.type}</div>
+                    </td>
+                  </tr>
+                ))}
               </table>
             </div>
           </div>
         </div>
-        <SameProducts items={items} isLoading={isLoading} />
       </section>
     </>
   );

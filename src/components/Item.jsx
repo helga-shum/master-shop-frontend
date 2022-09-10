@@ -1,8 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
-function Item({ title, imageUrl, id, brand, sizes, price, category, rating }) {
+import { showItem } from '../redux/slices/productSlice';
+
+function Item({
+  title,
+  imageUrl,
+  id,
+  brand,
+  sizes,
+  price,
+  category,
+  rating,
+  measures,
+  description,
+  procent,
+}) {
   const cartItem = useSelector((state) => state.cartSlice.items.find((obj) => obj.id == id));
+  console.log(useSelector((state) => state.cartSlice.items));
   const dispatch = useDispatch();
   const types = [
     'Skirts',
@@ -25,13 +40,27 @@ function Item({ title, imageUrl, id, brand, sizes, price, category, rating }) {
     };
     dispatch(addItem(item));
   };
+  const onClickMore = () => {
+    const itemDetails = {
+      id,
+      title,
+      price,
+      imageUrl,
+      brand,
+      description,
+      measures,
+      procent,
+    };
+    dispatch(showItem(itemDetails));
+  };
   const addedCount = cartItem ? cartItem.count : 0;
+
   return (
     <div className="items-products__column">
       <div className="item-product">
         <div className="item-product__labels"></div>
         <a href="" className="item-product__image">
-          <img src={imageUrl} alt="сукня" />
+          <img src={imageUrl[0]} alt="сукня" />
         </a>
         <div className="item-product__body">
           <a href="" className="item-product__title">
@@ -70,8 +99,10 @@ function Item({ title, imageUrl, id, brand, sizes, price, category, rating }) {
           <div className="hover-item-product__footer">
             <div className="hover-item-product__old-price grn">64 990</div>
             <div className="hover-item-product__stock">There is available</div>
-            <Link to="/product">
-              <button className="hover-item-product__stock">More information</button>
+            <Link to={`/catalog/${id}`}>
+              <button onClick={onClickMore} className="hover-item-product__stock">
+                More information
+              </button>
             </Link>
             <div className="hover-item-product__price grn">64990</div>
           </div>

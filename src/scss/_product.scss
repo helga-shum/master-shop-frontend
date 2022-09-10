@@ -346,6 +346,10 @@
         margin: 0px 0px 0px 0px;
       }
     }
+    display: none;
+    &._active {
+      display: block;
+    }
   }
   &__table {
     border-collapse: collapse;
