@@ -3,8 +3,23 @@ import Skeleton from './Skeleton';
 import Pagging from './Pagging';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function SameProducts({ items, isLoading }) {
+function SameProducts({ category, id }) {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [items, setItems] = React.useState([]);
+  React.useEffect(() => {
+    setIsLoading(true);
+
+    axios
+      .get(
+        `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?category=${category}&sortBy=rating&order=desc&limit=6`,
+      )
+      .then((res) => {
+        setItems(res.data);
+        setIsLoading(false);
+      });
+  }, []);
   return (
     <div className="page__products products-slider">
       <div className="products-slider__header">

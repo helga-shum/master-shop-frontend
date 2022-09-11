@@ -1,8 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addItem, removeItem, minusItem } from '../redux/slices/cartSlice';
-
-function CartItem({ id, title, price, count, imageUrl }) {
+import { Link } from 'react-router-dom';
+import { showItem } from '../redux/slices/productSlice';
+function CartItem({
+  id,
+  title,
+  price,
+  imageUrl,
+  brand,
+  description,
+  measures,
+  procent,
+  category,
+  count,
+}) {
   const dispatch = useDispatch();
   const onClickPlus = () => {
     dispatch(addItem({ id }));
@@ -15,17 +27,37 @@ function CartItem({ id, title, price, count, imageUrl }) {
       dispatch(removeItem(id));
     }
   };
+  const onClickMore = () => {
+    const itemDetails = {
+      id,
+      title,
+      price,
+      imageUrl,
+      brand,
+      description,
+      measures,
+      procent,
+      category,
+    };
+    console.log(itemDetails);
+    dispatch(showItem(itemDetails));
+  };
   const totalPriceItem = price * count;
   return (
     <div class="order-checkout__item item-order">
       <div class="item-order__content">
-        <a href="" class="item-order__image">
-          <img src={imageUrl[0]} alt="" />
-        </a>
-        <div class="item-order__body">
-          <div class="item-order__title">
-            <span>{title}</span>
+        <Link to={`/catalog/${id}`}>
+          <div onClick={onClickMore} class="item-order__image">
+            <img src={imageUrl[0]} alt="" />
           </div>
+        </Link>
+        <div class="item-order__body">
+          <Link to={`/catalog/${id}`}>
+            <div onClick={onClickMore} class="item-order__title">
+              <span>{title}</span>
+            </div>
+          </Link>
+
           <div class="item-order__price grn">{price}</div>
         </div>
       </div>

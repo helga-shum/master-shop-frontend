@@ -92,6 +92,9 @@
     @media (max-width: $md4+px) {
       flex: 0 0 80px;
     }
+    img {
+      max-height: 200px;
+    }
   }
   &__body {
     flex: 1 1 auto;

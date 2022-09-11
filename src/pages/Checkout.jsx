@@ -118,7 +118,7 @@ function Checkout() {
           <div class="order-checkout__title title-checkout">Your order</div>
           <div class="order-checkout__items">
             {items.map((item) => (
-              <CartItem key={item.id} {...item} totalPrice={totalPrice} />
+              <CartItem key={item.id} {...item} />
             ))}
           </div>
           <div class="order-checkout__footer">

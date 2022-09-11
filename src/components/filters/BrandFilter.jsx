@@ -1,9 +1,19 @@
 import React from 'react';
-
+import { setBrandFilter, minusBrandFilter } from '../../redux/slices/filterSlice';
+import { useDispatch } from 'react-redux';
 function BrandFilter() {
+  const dispatch = useDispatch();
+  const brands = ['Forever 21', 'Catwalk', 'Miss Chase', 'HandM', 'Biba Apparels', 'ASOS'];
   const [filter, setFilter] = React.useState(false);
   const [spoller, setSpoller] = React.useState(false);
-
+  const onClickChecked = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      dispatch(setBrandFilter(value));
+    } else {
+      dispatch(minusBrandFilter(value));
+    }
+  };
   return (
     <div className="filter__section section-filter">
       <div
@@ -18,43 +28,17 @@ function BrandFilter() {
         }>
         Brands
       </div>
-      <div className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
-          <span className="checkbox__text">
-            <span>Forever 21</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
-          <span className="checkbox__text">
-            <span>Catwalk</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
-          <span className="checkbox__text">
-            <span>Miss Chase</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
-          <span className="checkbox__text">
-            <span>HandM</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
-          <span className="checkbox__text">
-            <span>Biba Apparels</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
-          <span className="checkbox__text">
-            <span>ASOS</span>
-          </span>
-        </label>
+      <div
+        onClick={onClickChecked}
+        className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
+        {brands.map((brand) => (
+          <label className="section-filter__checkbox checkbox">
+            <input data-error="Error" type="checkbox" className="checkbox__input" value={brand} />
+            <span className="checkbox__text">
+              <span>{brand}</span>
+            </span>
+          </label>
+        ))}
       </div>
     </div>
   );

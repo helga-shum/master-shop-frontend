@@ -6,11 +6,11 @@ import { addItem, minusItem } from '../redux/slices/cartSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 function Product() {
+  const [subImg, setSubImg] = React.useState(0);
   const dispatch = useDispatch();
 
-  const { id, title, price, imageUrl, brand, description, measures, procent } = useSelector(
-    (state) => state.productSlice.item,
-  );
+  const { id, title, price, imageUrl, brand, description, measures, procent, category } =
+    useSelector((state) => state.productSlice.item);
   const onClickPlus = () => {
     dispatch(addItem({ id }));
   };
@@ -44,18 +44,22 @@ function Product() {
               <a href="" className="images-product__mainslide">
                 <div className="images-product__sale">-{procent}%</div>
                 <div className="images-product__image">
-                  <img src={imageUrl[0]} alt="1" />
+                  <img src={imageUrl[subImg]} alt="1" />
                 </div>
               </a>
             </div>
             <div className="images-product__subslider _swiper">
-              <div className="images-product__subslide">
-                {imageUrl.map((image) => (
+              {imageUrl.map((image, i) => (
+                <div
+                  onClick={() => {
+                    setSubImg(i);
+                  }}
+                  className="images-product__subslide">
                   <div className="images-product__subimage">
                     <img src={image} alt="" />
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
           <div className="product__body body-product">
@@ -69,7 +73,7 @@ function Product() {
               <div className="actions-product__row">
                 <div className="actions-product__column">
                   <div className="actions-product__price actions-product__price_old">69000</div>
-                  <div className="actions-product__price grn">{price}</div>
+                  <div className="actions-product__price grn">{price}$</div>
                 </div>
                 <div className="actions-product__column">
                   <div className="actions-product__quantity quantity">
@@ -208,6 +212,7 @@ function Product() {
             </div>
           </div>
         </div>
+        <SameProducts id={id} category={category} />
       </section>
     </>
   );

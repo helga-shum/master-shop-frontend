@@ -16,6 +16,10 @@ import { useNavigate } from 'react-router-dom';
 
 function Catalog() {
   const navigate = useNavigate();
+  const sizeFilter = useSelector((state) => state.filterSlice.sizeFilter);
+  const priceFilter = useSelector((state) => state.filterSlice.priceFilter);
+  const fabricFilter = useSelector((state) => state.filterSlice.fabricFilter);
+  const brandFilter = useSelector((state) => state.filterSlice.brandFilter);
   const sortType = useSelector((state) => state.filterSlice.sortType);
   const categoryId = useSelector((state) => state.filterSlice.categoryId);
   const currentPage = useSelector((state) => state.filterSlice.currentPage);
@@ -81,7 +85,6 @@ function Catalog() {
     const handleOutsideClick = (event) => {
       if (!event.path.includes(sortRef.current)) {
         setSorting(false);
-        console.log('click outside');
       }
     };
     document.body.addEventListener('click', handleOutsideClick);

@@ -17,7 +17,7 @@ function Item({
   procent,
 }) {
   const cartItem = useSelector((state) => state.cartSlice.items.find((obj) => obj.id == id));
-  console.log(useSelector((state) => state.cartSlice.items));
+
   const dispatch = useDispatch();
   const types = [
     'Skirts',
@@ -37,6 +37,11 @@ function Item({
       title,
       price,
       imageUrl,
+      brand,
+      description,
+      measures,
+      procent,
+      category,
     };
     dispatch(addItem(item));
   };
@@ -50,6 +55,7 @@ function Item({
       description,
       measures,
       procent,
+      category,
     };
     dispatch(showItem(itemDetails));
   };

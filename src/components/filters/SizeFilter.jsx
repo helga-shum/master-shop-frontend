@@ -1,9 +1,21 @@
 import React from 'react';
 
+import { setSizeFilter, minusSizeFilter } from '../../redux/slices/filterSlice';
+import { useDispatch } from 'react-redux';
 function SizeFilter() {
+  const dispatch = useDispatch();
+  const sizes = [34, 36, 38, 40, 42, 44, 46];
   const [filter, setFilter] = React.useState(false);
   const [spoller, setSpoller] = React.useState(false);
 
+  const onClickChecked = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      dispatch(setSizeFilter(value));
+    } else {
+      dispatch(minusSizeFilter(value));
+    }
+  };
   return (
     <div className="filter__section section-filter">
       <div
@@ -19,48 +31,20 @@ function SizeFilter() {
         Size
       </div>
       <div className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
-        <label onClick className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="1" />
-          <span className="checkbox__text">
-            <span>34</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="2" />
-          <span className="checkbox__text">
-            <span>36</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="3" />
-          <span className="checkbox__text">
-            <span>38</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="4" />
-          <span className="checkbox__text">
-            <span>40</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="5" />
-          <span className="checkbox__text">
-            <span>42</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="6" />
-          <span className="checkbox__text">
-            <span>44</span>
-          </span>
-        </label>
-        <label className="section-filter__checkbox checkbox">
-          <input data-error="Error" type="checkbox" className="checkbox__input" value="7" />
-          <span className="checkbox__text">
-            <span>46</span>
-          </span>
-        </label>
+        {sizes.map((size) => (
+          <label onClick={onClickChecked} className="section-filter__checkbox checkbox">
+            <input
+              data-error="Error"
+              type="checkbox"
+              className="checkbox__input"
+              name="size"
+              value={size}
+            />
+            <span className="checkbox__text">
+              <span>{size}</span>
+            </span>
+          </label>
+        ))}
       </div>
     </div>
   );
