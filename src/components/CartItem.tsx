@@ -64,18 +64,25 @@ const CartItemBlock: React.FC<CartItemProps> = ({
       </div>
       <div className="item-order__quantity">
         <div className="quantity">
-          <div onClick={onClickMinus} className="quantity__button quantity__button_minus"></div>
+          <button
+            disabled={count == 1}
+            type="button"
+            onClick={onClickMinus}
+            className="quantity__button quantity__button_minus"></button>
           <div className="quantity__input">
             <input autoComplete="off" type="text" name="form[]" value={count} />
           </div>
-          <div onClick={onClickPlus} className="quantity__button quantity__button_plus"></div>
+          <button
+            type="button"
+            onClick={onClickPlus}
+            className="quantity__button quantity__button_plus"></button>
         </div>
       </div>
       <div className="item-order__total">
         <div className="item-order__label">Sum of goods:</div>
         <div className="item-order__price grn">{totalPriceItem}</div>
       </div>
-      <button onClick={onClickRemove} className="item-order__delete"></button>
+      <button type="button" onClick={onClickRemove} className="item-order__delete"></button>
     </div>
   );
 };

@@ -13,7 +13,7 @@ export const fetchItems = createAsyncThunk('item/fetchItemsStatus', async (param
   const { data } = await axios.get<Item[]>(
     `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?${
       categoryId > 0 ? `category=${categoryId}` : ''
-    }&search=${search}&sortBy=${sortType.sort}&order=desc&page=${currentPage}&limit=3`,
+    }&search=${search}&sortBy=${sortType.sort}&order=desc&page=${currentPage}&limit=6`,
   );
   return data as Item[];
   // if (data.length == 0) {

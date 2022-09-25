@@ -238,6 +238,14 @@
           no-repeat;
       }
     }
+    &:disabled {
+      opacity: 0.4;
+      border-color: #787878;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
     &_minus {
       transform: rotate(-180deg);
     }
