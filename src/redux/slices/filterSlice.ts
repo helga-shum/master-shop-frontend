@@ -70,15 +70,10 @@ const filterSlice = createSlice({
         state.brandFilter.splice(sizeIndex, 1);
       }
     },
-    setPriceFilter(state, action: PayloadAction<number>) {
-      state.priceFilter.push(action.payload);
+    setPriceFilter(state, action: PayloadAction<number[]>) {
+      state.priceFilter == action.payload;
     },
-    minusPriceFilter(state, action: PayloadAction<number>) {
-      const sizeIndex = state.priceFilter.indexOf(action.payload);
-      if (sizeIndex !== -1) {
-        state.priceFilter.splice(sizeIndex, 1);
-      }
-    },
+
     setFabricFilter(state, action: PayloadAction<string>) {
       state.fabricFilter.push(action.payload);
     },
@@ -101,7 +96,7 @@ export const {
   setBrandFilter,
   minusBrandFilter,
   setPriceFilter,
-  minusPriceFilter,
+
   setFabricFilter,
   minusFabricFilter,
   setSearchValue,

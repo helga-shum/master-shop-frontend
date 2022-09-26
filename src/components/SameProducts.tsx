@@ -1,16 +1,14 @@
 import Item from './Item';
 import Skeleton from './Skeleton';
-import Pagging from './Pagging';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 import { setCurrentPage } from '../redux/slices/filterSlice';
 import { useAppDispatch } from '../redux/store';
 const SameProducts: React.FC<{ category: number }> = ({ category }) => {
   const dispatch = useAppDispatch();
-  const onChangePage = (number: number) => {
-    dispatch(setCurrentPage(number));
-  };
+
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [items, setItems] = React.useState<
     {
@@ -45,9 +43,7 @@ const SameProducts: React.FC<{ category: number }> = ({ category }) => {
       <div className="products-slider__header">
         <div className="products-slider__title">Popular goods</div>
         <div className="products-slider__control">
-          <div className="show-catalog__pages">
-            <Pagging onChangePage={onChangePage} />
-          </div>
+          <div className="show-catalog__pages"></div>
         </div>
       </div>
       <div className="products-slider__item _swiper">

@@ -1,4 +1,4 @@
-import Pagging from '../components/Pagging';
+import Pagging from '../components/Pagging/Pagging';
 import ProductsSlider from '../components/ProductsSlider';
 import { useSelector } from 'react-redux';
 import React from 'react';
@@ -170,9 +170,7 @@ const Catalog: React.FC = () => {
                 </select>
               </div>
             </div>
-            <div className="show-catalog__pages">
-              <Pagging onChangePage={(number) => onChangePage(number)} />
-            </div>
+            <div className="show-catalog__pages"></div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import Item from './Item';
 import Skeleton from './Skeleton';
-import Pagging from './Pagging';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { setCurrentPage } from '../redux/slices/filterSlice';
@@ -25,17 +25,13 @@ type HomeProductsProps = {
 
 const HomeProducts: React.FC<HomeProductsProps> = ({ items, isLoading }) => {
   const dispatch = useAppDispatch();
-  const onChangePage = (number: number) => {
-    dispatch(setCurrentPage(number));
-  };
+
   return (
     <div className="page__products products-slider">
       <div className="products-slider__header">
         <div className="products-slider__title">Popular goods</div>
         <div className="products-slider__control">
-          <div className="show-catalog__pages">
-            <Pagging onChangePage={onChangePage} />
-          </div>
+          <div className="show-catalog__pages"></div>
         </div>
       </div>
       <div className="products-slider__item _swiper">
