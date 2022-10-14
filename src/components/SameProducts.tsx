@@ -4,7 +4,7 @@ import Skeleton from './Skeleton';
 import React from 'react';
 
 import axios from 'axios';
-import { setCurrentPage } from '../redux/slices/filterSlice';
+
 import { useAppDispatch } from '../redux/store';
 const SameProducts: React.FC<{ category: number }> = ({ category }) => {
   const dispatch = useAppDispatch();

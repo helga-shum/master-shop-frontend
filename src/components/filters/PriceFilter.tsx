@@ -2,17 +2,23 @@ import React from 'react';
 import { Typography, Slider } from '@material-ui/core';
 import { setPriceFilter } from '../../redux/slices/filterSlice';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const PriceFilter: React.FC = () => {
+  const { priceFilter } = useSelector((state: RootState) => state.filterSlice);
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState<number[]>([2500, 7500]);
+  // const [value, setValue] = React.useState([2500, 7500]);
   const [filter, setFilter] = React.useState<boolean>(false);
   const [spoller, setSpoller] = React.useState<boolean>(false);
-
-  const rangeSelector = (event: React.ChangeEvent<HTMLInputElement>, newValue: number[]) => {
-    setValue(newValue);
-    dispatch(setPriceFilter(newValue));
-    console.log(newValue);
+  // const rangeSelector = (event: any, value: number[]) => {
+  //   setValue(value);
+  // };
+  const rangeSelector = (
+    event: React.ChangeEvent<Record<string, unknown>>,
+    value: number | number[],
+  ) => {
+    dispatch(setPriceFilter(value as number[]));
   };
 
   return (
@@ -41,22 +47,23 @@ const PriceFilter: React.FC = () => {
           Select Price Range:
         </Typography>
         <Slider
-          value={value}
+          key={`slider-${priceFilter}`}
+          value={priceFilter}
           onChange={rangeSelector}
           valueLabelDisplay="auto"
           min={2500}
           max={7500}
         />
-        Your range of Price is between {value[0]} /- and {value[1]} /-
+        Your range of Price is between {priceFilter[0]} /- and {priceFilter[1]} /-
         <div className="section-filter__price-input">
           <div className="section-filter__field">
             <span>Min</span>
-            <input type="number" className="section-filter__input-min" value={value[0]} />
+            <input type="number" className="section-filter__input-min" value={priceFilter[0]} />
           </div>
           <div className="section-filter__separator">-</div>
           <div className="section-filter__field">
             <span>Max</span>
-            <input type="number" className="section-filter__input-max" value={value[1]} />
+            <input type="number" className="section-filter__input-max" value={priceFilter[1]} />
           </div>
         </div>
       </div>

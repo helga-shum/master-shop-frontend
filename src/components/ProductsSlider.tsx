@@ -5,6 +5,7 @@ import React from 'react';
 import ErrorPage from './ErrorPage';
 
 const ProductsSlider: React.FC<{
+  view: string;
   items: {
     title: string;
     imageUrl: string[];
@@ -20,17 +21,22 @@ const ProductsSlider: React.FC<{
     count: number;
   }[];
   status: string;
-}> = ({ items, status }) => {
-  const clothes = items.map((obj) => <Item key={obj.id} {...obj} />);
+}> = ({ items, status, view }) => {
+  const clothes = items.map((obj) => <Item view={view} key={obj.id} {...obj} />);
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
   return (
-    <div className="page__products products-slider">
+    <div className="page__products products-slider ">
       <div className="products-slider__item _swiper">
         <div className="products-slider__slide">
           {status == 'error' ? (
             <ErrorPage />
           ) : (
-            <div className="products-slider__items items-products">
+            <div
+              className={
+                view == 'list'
+                  ? 'products-slider__items items-products _active'
+                  : 'products-slider__items items-products'
+              }>
               {status == 'loading' ? skeleton : clothes}
             </div>
           )}

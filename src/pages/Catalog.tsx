@@ -99,6 +99,7 @@ const Catalog: React.FC = () => {
       document.body.removeEventListener('click', handleOutsideClick);
     };
   }, []);
+  const [view, setView] = React.useState('grid');
 
   return (
     <>
@@ -135,8 +136,20 @@ const Catalog: React.FC = () => {
               </div>
             </div>
             <div className="actions-catalog__view view-catalog">
-              <div className="view-catalog__item view-catalog__item_grid"></div>
-              <div className="view-catalog__item view-catalog__item_list"></div>
+              <div
+                onClick={() => {
+                  setView('grid');
+                }}
+                className={`view-catalog__item view-catalog__item_grid ${
+                  view == 'grid' ? '_active' : ''
+                }`}></div>
+              <div
+                onClick={() => {
+                  setView('list');
+                }}
+                className={`view-catalog__item view-catalog__item_list ${
+                  view == 'list' ? '_active' : ''
+                }`}></div>
             </div>
           </div>
           <div className="catalog__navi navi-catalog_top">
@@ -155,7 +168,8 @@ const Catalog: React.FC = () => {
             </div>
           </div>
           <Pagging onChangePage={onChangePage} />
-          <ProductsSlider items={items} status={status} />
+          <ProductsSlider view={view} items={items} status={status} />
+
           <div className="catalog__navi navi-catalog">
             <div className="navi-catalog__show show-catalog">
               <div className="show-catalog__label">On page:</div>
@@ -170,7 +184,9 @@ const Catalog: React.FC = () => {
                 </select>
               </div>
             </div>
-            <div className="show-catalog__pages"></div>
+            <div className="show-catalog__pages">
+              <Pagging onChangePage={onChangePage} />
+            </div>
           </div>
         </div>
       </div>

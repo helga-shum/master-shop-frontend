@@ -10,6 +10,8 @@ import Catalog from './pages/Catalog';
 import Product from './pages/Product';
 import InfoMenu from './components/InfoMenu';
 import Checkout from './pages/Checkout';
+import SignUp from './components/SignUpPage';
+import SignInSide from './components/SignInPage';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/catalog/:id" element={<Product />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/sign-in" element={<SignInSide />} />
           </Routes>
         </div>
         <InfoMenu />

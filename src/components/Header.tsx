@@ -84,17 +84,17 @@ const Header: React.FC = () => {
           <div className="bottom-header__column">
             <ul data-da="menu__body,0,640" className="bottom-header__actions actions-header">
               <li>
-                <a href="" className="actions-header__item actions-header__item_login">
+                <Link to="/sign-in" className="actions-header__item actions-header__item_login">
                   <span>Вход</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   data-da="menu__body,3,640"
-                  href=""
+                  to="/sign-up"
                   className="actions-header__item actions-header__item_reg">
                   <span>Регистрация</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a

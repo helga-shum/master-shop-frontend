@@ -1,17 +1,21 @@
 import React from 'react';
 import styles from './Pagging.module.scss';
 import ReactPaginate from 'react-paginate';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const Pagging: React.FC<{ onChangePage: (number: number) => void }> = ({ onChangePage }) => {
+  const { currentPage } = useSelector((state: RootState) => state.filterSlice);
   return (
     <ReactPaginate
       className={styles.root}
       breakLabel="..."
       nextLabel="next >"
-      onPageChange={(event) => onChangePage(event.selected + 1)}
+      onPageChange={(event) => onChangePage(event.selected)}
       pageRangeDisplayed={6}
       pageCount={3}
       previousLabel="< previous"
+      forcePage={currentPage}
     />
   );
 };

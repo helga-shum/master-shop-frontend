@@ -19,14 +19,14 @@ export type FilterSliceState = {
 const initialState: FilterSliceState = {
   searchValue: '',
   categoryId: 0,
-  currentPage: 1,
+  currentPage: 0,
   sortType: {
     name: 'Popularity',
     sort: 'order_number',
   },
   sizeFilter: [],
   brandFilter: [],
-  priceFilter: [],
+  priceFilter: [2500, 7500],
   fabricFilter: [],
 };
 
@@ -71,7 +71,7 @@ const filterSlice = createSlice({
       }
     },
     setPriceFilter(state, action: PayloadAction<number[]>) {
-      state.priceFilter == action.payload;
+      state.priceFilter = action.payload;
     },
 
     setFabricFilter(state, action: PayloadAction<string>) {
