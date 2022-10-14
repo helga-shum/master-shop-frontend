@@ -1,0 +1,440 @@
+.filter {
+  border: 4px solid #72c9d4;
+
+  &__title {
+    padding: 25px 15px 5px 15px;
+    color: #36949f;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    transition: all 0.3s ease 0s;
+    @media (max-width: $md2+px) {
+      padding: 25px 15px 25px 15px;
+      &._active {
+        padding: 25px 15px 5px 15px;
+      }
+    }
+  }
+  &__content {
+    @media (max-width: $md2+px) {
+      display: none;
+    }
+    @media (min-width: $md2+px) {
+      display: block !important;
+    }
+  }
+  &__body {
+  }
+  &__section {
+  }
+  &__footer {
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+  }
+  &__btn {
+    padding: 0px 15px;
+    text-transform: none;
+  }
+}
+.section-filter {
+  padding: 30px 15px;
+  border-bottom: 1px solid #72c9d4;
+  &:last-child {
+    border: 0;
+  }
+  &__title {
+    color: #36949f;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &._spoller {
+      cursor: pointer;
+      &::after {
+        content: '';
+        border-radius: 50%;
+        flex: 0 0 30px;
+        width: 30px;
+        height: 30px;
+        border: 1px solid #72c;
+        background: url('https://img.icons8.com/ios/35/000000/arrow--v1.png') center no-repeat;
+      }
+      &._active {
+        color: #000;
+        &::after {
+          border: 1px solid #b86029;
+          background: url('https://img.icons8.com/ios/30/000000/long-arrow-down.png') center
+            no-repeat;
+        }
+      }
+    }
+  }
+  &__body {
+    padding: 15px 0px 0px 0px;
+    display: none;
+    &._active {
+      display: block;
+    }
+  }
+  &__price-input {
+    width: 100%;
+    display: flex;
+    margin: 30px 0 35px;
+  }
+  &__price-input,
+  &__field {
+    height: 45px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__field {
+    input {
+      width: 100%;
+      height: 100%;
+      margin-left: 12px;
+      outline: none;
+      font-size: 19px;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #999;
+      -moz-appearance: textfield;
+    }
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+  &__price-input,
+  &__separator {
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.values-price-filter {
+  display: flex;
+  margin: 0px -15px;
+  &__column {
+    flex: 0 1 50%;
+    padding: 0px 15px;
+    display: flex;
+    align-items: center;
+  }
+  &__label {
+    color: #999999;
+    font-size: 12px;
+    font-weight: 300;
+  }
+  &__input {
+    flex: 1 1 auto;
+    padding: 0px 0px 0px 10px;
+    margin: 10px;
+    .input {
+      padding: 0px 10px;
+      height: 20px;
+      width: 50px;
+    }
+  }
+}
+.input {
+  border-radius: 0%;
+  border: 1px solid #e5e5e5;
+  width: 100%;
+  height: 30px;
+  display: block;
+  padding: 0px 15px;
+}
+
+.compare-filter {
+  &__items {
+    padding: 0px 13px 0px 0px;
+    margin: 0px 0px 20px 0px;
+  }
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0px 10px 0px;
+    &:last-child {
+      margin: 0px 0px 0px 0px;
+    }
+  }
+  &__link {
+    line-height: 16px;
+    color: #1ab;
+    font-size: 12px;
+    font-weight: 300;
+    text-decoration: underline;
+  }
+  &__remove {
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+    margin: 3px 0px 0px 0px;
+    background: url('https://img.icons8.com/ios/50/000000/multiply.png') 0 0 no-repeat;
+
+    @media (min-width: $md2+px) {
+      &:hover {
+        background: url('https://img.icons8.com/ios-filled/35/000000/multiply.png') 0 0 no-repeat;
+      }
+    }
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 33px;
+    background-color: #1ab;
+    padding: 0px 13px;
+    border-radius: 25px;
+    span {
+      background: url('https://img.icons8.com/ios-filled/50/000000/compare.png') left no-repeat;
+      padding: 0px 0px 0px 20px;
+      line-height: 33px;
+      display: inline-block;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 900;
+    }
+  }
+  &__clean {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background: #e6e6e6 url('https://img.icons8.com/ios-filled/50/000000/delete-forever.png') center
+      no-repeat;
+  }
+}
+
+.checkbox {
+  position: relative;
+  &__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    &:checked + .checkbox__text:before {
+      border: 2px solid #009aaf;
+    }
+    &:checked + .checkbox__text:after {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 15px;
+      height: 15px;
+      background-color: #72c;
+    }
+  }
+  &__text {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    font-size: 12px;
+    color: #666666;
+
+    line-height: calc(15 / 12);
+    cursor: pointer;
+    &:before {
+      content: '';
+      align-self: flex-start;
+      margin: 0px 14px 0px 0px;
+      flex: 0 0 15px;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      background: #fff;
+      border: 1px solid #a7a9ac;
+    }
+  }
+}
+.btn {
+  display: inline-flex;
+  padding: 0px 25px;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease 0s;
+  height: 39px;
+  background-color: #f68038;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 18px;
+  text-transform: uppercase;
+
+  @media (min-width: 992px) {
+    &:hover {
+      background-color: #b86029;
+    }
+  }
+  &_grey {
+    color: #666666;
+    background-color: #e6e6e6;
+    @media (min-width: 992px) {
+      &:hover {
+        background-color: #a1a1a1;
+      }
+    }
+  }
+}
+.catalog {
+  &__actions {
+    margin: 0px 0px 15px 0px;
+  }
+  &__products {
+  }
+}
+.actions-catalog {
+  background-color: #f3f3f3;
+
+  padding: 10px 20px;
+  align-items: center;
+  @media (min-width: 540px) {
+    display: flex;
+  }
+  &__order {
+    @media (max-width: 540px) {
+      margin: 0px 0px 15px 0px;
+    }
+  }
+  &__view {
+  }
+}
+.order-option {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  &:hover {
+    background-color: #ddd;
+  }
+}
+.order-catalog {
+  @media (min-width: 540px) {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+  }
+  &__label {
+    margin: 0px 20px 0px 0px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: 900;
+    @media (max-width: 540px) {
+      margin: 0px 0px 10px 0px;
+    }
+  }
+  &__select {
+    position: relative;
+    display: inline-block;
+  }
+  &__btn {
+    background-color: #3498db;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      background-color: #2980b9;
+    }
+  }
+  &__content {
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: none;
+    &._active {
+      display: block;
+    }
+  }
+}
+.view-catalog {
+  display: flex;
+  &__item {
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    margin: 0px 0px 0px 8px;
+    background-color: #ffffff;
+    &:hover {
+      background-color: #4da0b9;
+    }
+    &_grid {
+      background: url('https://img.icons8.com/ios-filled/50/000000/grid.png') center no-repeat;
+      &._active {
+        background-color: #4da0b9;
+      }
+    }
+    &_list {
+      background: url('https://img.icons8.com/ios-filled/50/000000/list.png') center no-repeat;
+      &._active {
+        background-color: #4da0b9;
+      }
+    }
+    @media (max-width: 540px) {
+      margin: 0px 10px 0px 0px;
+    }
+  }
+}
+.navi-catalog {
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+  padding: 10px 15px;
+  @media (min-width: 540px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &_top {
+    margin: 0px 0px 23px 0px;
+  }
+  &__show {
+  }
+  &__pages {
+  }
+}
+.show-catalog {
+  @media (min-width: 540px) {
+    display: flex;
+    align-items: center;
+  }
+  &__label {
+    margin: 0px 20px 0px 0px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: 900;
+    @media (max-width: 540px) {
+      margin: 0px 0px 10px 0px;
+    }
+  }
+  &__select {
+  }
+}
+.title-item {
+  color: #dadada;
+  font-family: serif;
+  font-size: 30px;
+  line-height: 130%;
+  margin: 0px 0px 20px 0px;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+}

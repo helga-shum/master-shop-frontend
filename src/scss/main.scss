@@ -1,0 +1,48 @@
+@import '_normalize';
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,regular,500,700');
+//default font
+$fontFamily: 'Roboto';
+//default font
+//variables
+$minWidth: 320px;
+$maxWidth: 1400;
+$maxWidthContainer: 1180;
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+//variables
+
+//parameters
+
+body {
+  font-size: 14px;
+  &._lock {
+    overflow: hidden;
+  }
+}
+//parameters
+//wrapper
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+//main grid
+._container {
+  max-width: $maxWidthContainer + px;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+//main grid
+
+@import '_header';
+@import '_mains';
+@import '_footer';
+@import '_catalog';
+@import '_pagging';
+@import '_product';
+@import '_checkout';
+@import '_form';
