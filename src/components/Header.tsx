@@ -2,9 +2,12 @@ import logo from '../img/logo.png';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PageSearch from './PageSearch';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
+import { logout, selectAuth } from '../redux/slices/auth';
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectAuth);
   const location = useLocation();
   const { items, totalPrice } = useSelector((state: RootState) => state.cartSlice);
   const links = ['Brands', 'Sale', 'Delivery', 'Garanty', 'Payment', 'Contacts'];
@@ -13,6 +16,12 @@ const Header: React.FC = () => {
 
   const onActiveLink = (index: number) => {
     setActiveLink(index);
+  };
+  const onClickLogout = () => {
+    if (window.confirm('Are you sure you want to logout?')) {
+      dispatch(logout());
+      window.localStorage.removeItem('token');
+    }
   };
   const isMounted = React.useRef(false);
   React.useEffect(() => {
@@ -83,19 +92,31 @@ const Header: React.FC = () => {
         <div className="bottom-header__container _container">
           <div className="bottom-header__column">
             <ul data-da="menu__body,0,640" className="bottom-header__actions actions-header">
-              <li>
-                <Link to="/sign-in" className="actions-header__item actions-header__item_login">
-                  <span>Вход</span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  data-da="menu__body,3,640"
-                  to="/sign-up"
-                  className="actions-header__item actions-header__item_reg">
-                  <span>Регистрация</span>
-                </Link>
-              </li>
+              {isAuth ? (
+                <>
+                  <li>
+                    <Link to="/catalog" className="actions-header__item actions-header__item_login">
+                      <button onClick={onClickLogout}>Log out</button>
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login" className="actions-header__item actions-header__item_login">
+                      <button>Login</button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      data-da="menu__body,3,640"
+                      to="/register"
+                      className="actions-header__item actions-header__item_reg">
+                      <button>Sign up</button>
+                    </Link>
+                  </li>
+                </>
+              )}
               <li>
                 <a
                   href="mailto:shum.olha@gmail.com"

@@ -5,15 +5,21 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import { Routes, Route } from 'react-router-dom';
 import React from 'react';
-
 import Catalog from './pages/Catalog';
 import Product from './pages/Product';
 import InfoMenu from './components/InfoMenu';
 import Checkout from './pages/Checkout';
-import SignUp from './components/SignUpPage';
-import SignInSide from './components/SignInPage';
-
+import { Registration } from './pages/Registration/Registration';
+import { Login } from './pages/Login/Login';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAuthMe, selectAuth } from './redux/slices/auth';
 function App() {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectAuth);
+  React.useEffect(() => {
+    //@ts-ignore
+    dispatch(fetchAuthMe());
+  }, []);
   return (
     <div className="App">
       <Header />
@@ -24,8 +30,8 @@ function App() {
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/catalog/:id" element={<Product />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/sign-in" element={<SignInSide />} />
+            <Route path="/register" element={<Registration />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
         <InfoMenu />

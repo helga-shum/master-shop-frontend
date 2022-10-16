@@ -7,6 +7,9 @@ import { addItem, minusItem } from '../redux/slices/cartSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { CartItem } from '../redux/slices/cartSlice';
+import { CommentsBlock } from '../components/CommentBlock';
+import { AddComment } from '@mui/icons-material';
+import { Index } from '../components/AddComment';
 
 const Product: React.FC = () => {
   const dispatch = useDispatch();
@@ -224,6 +227,27 @@ const Product: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <CommentsBlock
+          items={[
+            {
+              user: {
+                fullName: 'Вася Пупкин',
+                avatarUrl: 'https://mui.com/static/images/avatar/1.jpg',
+              },
+              text: 'Это тестовый комментарий 555555',
+            },
+            {
+              user: {
+                fullName: 'Иван Иванов',
+                avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
+              },
+              text: 'When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top',
+            },
+          ]}
+          isLoading={false}>
+          <Index postId="345" user="Lesha" />
+        </CommentsBlock>
         <SameProducts category={item.category} />
       </section>
     </>
