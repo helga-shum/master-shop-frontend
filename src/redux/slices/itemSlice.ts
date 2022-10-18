@@ -8,20 +8,18 @@ type Params = {
   currentPage: number;
   search: string;
 };
+export const fetchPopularItems = createAsyncThunk('posts/fetchPopulatItems', async () => {
+  const { data } = await axios.get('/');
+  return data;
+});
 export const fetchItems = createAsyncThunk('item/fetchItemsStatus', async (params: Params) => {
   const { data } = await axios.get<Item[]>(
     `/catalog?${params.categoryId > 0 ? `category=${params.categoryId}` : ''}&sortBy=${
       params.sortType.sort
     }&page=${params.currentPage + 1}&limit=6&search=${params.search}`,
   );
-  // `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?${
-  //   categoryId > 0 ? `category=${categoryId}` : ''
-  // }&search=${search}&sortBy=${sortType.sort}&order=desc&page=${currentPage + 1}&limit=6`,
+
   return data as Item[];
-  // if (data.length == 0) {
-  //   return thunkApi.rejectWithValue('items are empty');
-  // }
-  // return thunkApi.fulfillWithValue(data);
 });
 
 type Item = {
@@ -45,11 +43,13 @@ export enum Status {
   ERROR = 'error',
 }
 type ItemSliceState = {
+  popularItems: Item[];
   items: { products: Item[]; totalPages: number };
   status: Status.LOADING | Status.SUCCES | Status.ERROR;
 };
 
 const initialState: ItemSliceState = {
+  popularItems: [],
   items: { products: [], totalPages: 0 },
   status: Status.LOADING,
 };
@@ -64,6 +64,7 @@ const itemSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      //products
       .addCase(fetchItems.pending, (state) => {
         state.status = Status.LOADING;
         state.items = { products: [], totalPages: 0 };
@@ -71,11 +72,25 @@ const itemSlice = createSlice({
       .addCase(fetchItems.fulfilled, (state, action) => {
         state.status = Status.SUCCES;
         //@ts-ignore
-        state.items = totalPages;
+        state.items = action.payload;
       })
       .addCase(fetchItems.rejected, (state) => {
         state.status = Status.ERROR;
         state.items = { products: [], totalPages: 0 };
+      })
+      //popular products
+      .addCase(fetchPopularItems.pending, (state) => {
+        state.status = Status.LOADING;
+        state.popularItems = [];
+      })
+      .addCase(fetchPopularItems.fulfilled, (state, action) => {
+        state.status = Status.SUCCES;
+        //@ts-ignore
+        state.popularItems = action.payload;
+      })
+      .addCase(fetchPopularItems.rejected, (state) => {
+        state.status = Status.ERROR;
+        state.popularItems = [];
       });
   },
 });
