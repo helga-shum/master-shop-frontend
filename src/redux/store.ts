@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import filterSlice from './slices/filterSlice';
 import cartSlice from './slices/cartSlice';
-import { authReducer } from './slices/auth';
+import { authReducer } from './slices/authSlice';
+import { commentsReducer } from './slices/commentSlice';
 import itemSlice from './slices/itemSlice';
 import { useDispatch } from 'react-redux';
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     cartSlice,
     authReducer,
     itemSlice,
+    commentsReducer,
   },
 });
 

@@ -12,7 +12,7 @@ import Checkout from './pages/Checkout';
 import { Registration } from './pages/Registration/Registration';
 import { Login } from './pages/Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAuthMe, selectAuth } from './redux/slices/auth';
+import { fetchAuthMe, selectAuth } from './redux/slices/authSlice';
 function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectAuth);

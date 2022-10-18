@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '../../axios';
 
 import { Sort } from './filterSlice';
 type Params = {
@@ -9,12 +9,14 @@ type Params = {
   search: string;
 };
 export const fetchItems = createAsyncThunk('item/fetchItemsStatus', async (params: Params) => {
-  const { sortType, categoryId, currentPage, search } = params;
   const { data } = await axios.get<Item[]>(
-    `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?${
-      categoryId > 0 ? `category=${categoryId}` : ''
-    }&search=${search}&sortBy=${sortType.sort}&order=desc&page=${currentPage + 1}&limit=6`,
+    `/catalog?${params.categoryId > 0 ? `category=${params.categoryId}` : ''}&sortBy=${
+      params.sortType.sort
+    }&page=${params.currentPage + 1}&limit=6&search=${params.search}`,
   );
+  // `https://62fa7a9bffd7197707ed6aa7.mockapi.io/items?${
+  //   categoryId > 0 ? `category=${categoryId}` : ''
+  // }&search=${search}&sortBy=${sortType.sort}&order=desc&page=${currentPage + 1}&limit=6`,
   return data as Item[];
   // if (data.length == 0) {
   //   return thunkApi.rejectWithValue('items are empty');
@@ -43,12 +45,12 @@ export enum Status {
   ERROR = 'error',
 }
 type ItemSliceState = {
-  items: Item[];
+  items: { products: Item[]; totalPages: number };
   status: Status.LOADING | Status.SUCCES | Status.ERROR;
 };
 
 const initialState: ItemSliceState = {
-  items: [],
+  items: { products: [], totalPages: 0 },
   status: Status.LOADING,
 };
 
@@ -64,15 +66,16 @@ const itemSlice = createSlice({
     builder
       .addCase(fetchItems.pending, (state) => {
         state.status = Status.LOADING;
-        state.items = [];
+        state.items = { products: [], totalPages: 0 };
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
         state.status = Status.SUCCES;
-        state.items = action.payload;
+        //@ts-ignore
+        state.items = totalPages;
       })
       .addCase(fetchItems.rejected, (state) => {
         state.status = Status.ERROR;
-        state.items = [];
+        state.items = { products: [], totalPages: 0 };
       });
   },
 });

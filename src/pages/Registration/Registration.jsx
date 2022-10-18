@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import { useForm } from 'react-hook-form';
 import styles from './Login.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchRegister, selectAuth } from '../../redux/slices/auth.js';
+import { fetchRegister, selectAuth } from '../../redux/slices/authSlice.js';
 
 export const Registration = () => {
   const isAuth = useSelector(selectAuth);

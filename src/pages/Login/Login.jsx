@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import styles from './Login.module.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAuth, selectAuth } from '../../redux/slices/auth';
+import { fetchAuth, selectAuth } from '../../redux/slices/authSlice';
 
 export const Login = () => {
   const isAuth = useSelector(selectAuth);

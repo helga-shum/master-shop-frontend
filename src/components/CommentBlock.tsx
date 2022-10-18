@@ -7,8 +7,11 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Skeleton from '@mui/material/Skeleton';
-
-export const CommentsBlock = ({ items, isLoading = true }) => {
+type CommentsTypes = {
+  items: { user: { fullName: string; avatarUrl: string }; text: string }[];
+  isLoading: boolean;
+};
+const CommentsBlock: React.FC<CommentsTypes> = ({ items, isLoading = true }) => {
   console.log(items);
   return (
     <>
@@ -40,3 +43,4 @@ export const CommentsBlock = ({ items, isLoading = true }) => {
     </>
   );
 };
+export default CommentsBlock;

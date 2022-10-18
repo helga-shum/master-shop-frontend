@@ -4,7 +4,12 @@ import ReactPaginate from 'react-paginate';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
-const Pagging: React.FC<{ onChangePage: (number: number) => void }> = ({ onChangePage }) => {
+const Pagging: React.FC<{
+  totalPages: number;
+
+  onChangePage: (number: number) => void;
+}> = ({ onChangePage, totalPages }) => {
+  console.log(totalPages);
   const { currentPage } = useSelector((state: RootState) => state.filterSlice);
   return (
     <ReactPaginate

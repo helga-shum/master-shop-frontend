@@ -31,6 +31,7 @@ const Catalog: React.FC = () => {
   } = useSelector(selectFilter);
 
   const { items, status } = useSelector((state: RootState) => state.itemSlice);
+  console.log(items);
   const dispatch = useAppDispatch();
 
   const [sorting, setSorting] = React.useState<boolean>(false);
@@ -167,8 +168,8 @@ const Catalog: React.FC = () => {
               </div>
             </div>
           </div>
-          <Pagging onChangePage={onChangePage} />
-          <ProductsSlider view={view} items={items} status={status} />
+          <Pagging totalPages={items.totalPages} onChangePage={onChangePage} />
+          <ProductsSlider view={view} products={items.products} status={status} />
 
           <div className="catalog__navi navi-catalog">
             <div className="navi-catalog__show show-catalog">
@@ -185,7 +186,7 @@ const Catalog: React.FC = () => {
               </div>
             </div>
             <div className="show-catalog__pages">
-              <Pagging onChangePage={onChangePage} />
+              <Pagging totalPages={items.totalPages} onChangePage={onChangePage} />
             </div>
           </div>
         </div>

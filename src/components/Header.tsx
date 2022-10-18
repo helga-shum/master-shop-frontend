@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import PageSearch from './PageSearch';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
-import { logout, selectAuth } from '../redux/slices/auth';
+import { logout, selectAuth } from '../redux/slices/authSlice';
 const Header: React.FC = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectAuth);

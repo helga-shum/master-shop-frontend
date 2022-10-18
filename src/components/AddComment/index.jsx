@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import axios from '../../axios';
 
-export const Index = ({ user, postId }) => {
+export const Index = ({ user, ItemId }) => {
   const [text, setText] = React.useState('');
   const onChange = React.useCallback((text) => {
     setText(text);
@@ -15,11 +15,11 @@ export const Index = ({ user, postId }) => {
   const onComment = async () => {
     const fields = {
       user,
-      postId,
+      ItemId,
       text,
     };
 
-    await axios.post('/comment', fields);
+    await axios.post(`/catalog/${ItemId}`, fields);
 
     try {
     } catch (error) {
@@ -27,7 +27,7 @@ export const Index = ({ user, postId }) => {
       alert('error of create a comment');
     }
   };
-  console.log(user, postId);
+  console.log(user, ItemId);
   return (
     <>
       <div className={styles.root}>
