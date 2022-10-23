@@ -31,7 +31,7 @@ const Catalog: React.FC = () => {
   } = useSelector(selectFilter);
 
   const { items, status } = useSelector((state: RootState) => state.itemSlice);
-  console.log(items);
+
   const dispatch = useAppDispatch();
 
   const [sorting, setSorting] = React.useState<boolean>(false);
@@ -73,8 +73,28 @@ const Catalog: React.FC = () => {
 
   React.useEffect(() => {
     const search = searchValue ? searchValue : '';
-    dispatch(fetchItems({ sortType, categoryId, currentPage, search }));
-  }, [categoryId, sortType, searchValue, currentPage]);
+    dispatch(
+      fetchItems({
+        sortType,
+        categoryId,
+        currentPage,
+        search,
+        brandFilter,
+        fabricFilter,
+        priceFilter,
+        sizeFilter,
+      }),
+    );
+  }, [
+    categoryId,
+    sortType,
+    searchValue,
+    currentPage,
+    brandFilter,
+    fabricFilter,
+    priceFilter,
+    sizeFilter,
+  ]);
 
   React.useEffect(() => {
     const queryString = qs.stringify({

@@ -7,16 +7,32 @@ type Params = {
   categoryId: number;
   currentPage: number;
   search: string;
+  sizeFilter: string[];
+  brandFilter: string[];
+  priceFilter: number[];
+  fabricFilter: string[];
 };
 export const fetchPopularItems = createAsyncThunk('posts/fetchPopulatItems', async () => {
   const { data } = await axios.get('/');
   return data;
 });
 export const fetchItems = createAsyncThunk('item/fetchItemsStatus', async (params: Params) => {
+  const {
+    sortType,
+    categoryId,
+    currentPage,
+    search,
+    sizeFilter,
+    brandFilter,
+    priceFilter,
+    fabricFilter,
+  } = params;
   const { data } = await axios.get<Item[]>(
-    `/catalog?${params.categoryId > 0 ? `category=${params.categoryId}` : ''}&sortBy=${
-      params.sortType.sort
-    }&page=${params.currentPage + 1}&limit=6&search=${params.search}`,
+    `/catalog?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${sortType.sort}&page=${
+      currentPage + 1
+    }&limit=6&${search ? `search=${search}` : ''}&lowPrice=${priceFilter[0]}&highPrice=${
+      priceFilter[1]
+    }&size=${sizeFilter}&brand=${brandFilter}&fabric=${fabricFilter}`,
   );
 
   return data as Item[];
@@ -34,8 +50,9 @@ type Item = {
   category: number;
   count: number;
   order_number: number;
-  sizes: number[];
+  sizes: string[];
   rating: number;
+  fabric: string;
 };
 export enum Status {
   LOADING = 'loading',

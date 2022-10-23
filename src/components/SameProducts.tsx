@@ -16,7 +16,8 @@ const SameProducts: React.FC<{ category: number }> = ({ category }) => {
       imageUrl: string[];
       id: string;
       brand: string;
-      sizes: number[];
+      sizes: string[];
+      fabric: string;
       price: number;
       category: number;
       rating: number;

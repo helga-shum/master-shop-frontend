@@ -9,7 +9,6 @@ const Pagging: React.FC<{
 
   onChangePage: (number: number) => void;
 }> = ({ onChangePage, totalPages }) => {
-  console.log(totalPages);
   const { currentPage } = useSelector((state: RootState) => state.filterSlice);
   return (
     <ReactPaginate

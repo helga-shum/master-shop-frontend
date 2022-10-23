@@ -7,7 +7,8 @@ type CartItemProps = {
   imageUrl: string[];
   id: string;
   brand: string;
-  sizes: number[];
+  sizes: string[];
+  fabric: string;
   price: number;
   category: string;
   rating: number;
@@ -26,7 +27,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({
   category,
   rating,
   measures,
-
+  fabric,
   procent,
   count,
 }) => {
@@ -60,6 +61,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({
           </Link>
 
           <div className="item-order__price grn">{price}</div>
+          {fabric}
         </div>
       </div>
       <div className="item-order__quantity">

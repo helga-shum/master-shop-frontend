@@ -51,8 +51,8 @@ const PriceFilter: React.FC = () => {
           value={priceFilter}
           onChange={rangeSelector}
           valueLabelDisplay="auto"
-          min={2500}
-          max={7500}
+          min={10}
+          max={2500}
         />
         Your range of Price is between {priceFilter[0]} /- and {priceFilter[1]} /-
         <div className="section-filter__price-input">

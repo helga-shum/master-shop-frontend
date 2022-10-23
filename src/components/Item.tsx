@@ -8,7 +8,8 @@ type ItemProps = {
   imageUrl: string[];
   id: string;
   brand: string;
-  sizes: number[];
+  sizes: string[];
+  fabric: string;
   price: number;
   category: number;
   rating: number;
@@ -26,6 +27,7 @@ const Item: React.FC<ItemProps> = ({
   id,
   brand,
   sizes,
+  fabric,
   price,
   category,
   rating,
@@ -57,6 +59,7 @@ const Item: React.FC<ItemProps> = ({
       price,
       imageUrl,
       brand,
+      fabric,
       description,
       measures,
       procent,
@@ -101,6 +104,7 @@ const Item: React.FC<ItemProps> = ({
                     </a>
                   ))}
                 </div>
+                {fabric}
               </div>
               <div className="options-item-product__item">
                 <div className="options-item-product__label">Rating</div>
@@ -147,6 +151,7 @@ const Item: React.FC<ItemProps> = ({
                 </a>
               ))}
             </div>
+            {fabric}
           </div>
           <div className="options-item-product__item">
             <div className="options-item-product__label">Rating</div>

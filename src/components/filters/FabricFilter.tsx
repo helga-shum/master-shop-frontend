@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 const FabricFilter: React.FC = () => {
   const dispatch = useDispatch();
   const fabrics = ['Linen', 'Polyester', 'Crepe', 'Denim', 'Cotton'];
+
   const [filter, setFilter] = React.useState<boolean>(false);
   const [spoller, setSpoller] = React.useState<boolean>(false);
   const onClickChecked = (e: any) => {
@@ -28,12 +29,17 @@ const FabricFilter: React.FC = () => {
         }>
         Fabric type
       </div>
-      <div
-        onClick={onClickChecked}
-        className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
+      <div className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
         {fabrics.map((fabric) => (
           <label className="section-filter__checkbox checkbox">
-            <input data-error="Error" type="checkbox" className="checkbox__input" value={fabric} />
+            <input
+              defaultChecked={true}
+              onClick={onClickChecked}
+              data-error="Error"
+              type="checkbox"
+              className="checkbox__input"
+              value={fabric}
+            />
             <span className="checkbox__text">
               <span>{fabric}</span>
             </span>

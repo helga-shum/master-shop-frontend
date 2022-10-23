@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import BrandFilter from '../../components/filters/BrandFilter';
 import { RootState } from '../store';
 
 export type Sort = {
@@ -24,10 +25,10 @@ const initialState: FilterSliceState = {
     name: 'Popularity',
     sort: 'order_number',
   },
-  sizeFilter: [],
-  brandFilter: [],
-  priceFilter: [2500, 7500],
-  fabricFilter: [],
+  sizeFilter: ['34', '36', '38', '40', '42', '44', '46'],
+  brandFilter: ['Forever 21', 'Catwalk', 'Miss Chase', 'HandM', 'Biba Apparels', 'ASOS'],
+  priceFilter: [10, 2500],
+  fabricFilter: ['Linen', 'Polyester', 'Crepe', 'Denim', 'Cotton'],
 };
 
 const filterSlice = createSlice({

@@ -11,7 +11,8 @@ const ProductsSlider: React.FC<{
     imageUrl: string[];
     id: string;
     brand: string;
-    sizes: number[];
+    sizes: string[];
+    fabric: string;
     price: number;
     category: number;
     rating: number;
@@ -23,7 +24,6 @@ const ProductsSlider: React.FC<{
   status: string;
 }> = ({ products, status, view }) => {
   console.log(products);
-
   const clothes = products.map((obj) => <Item view={view} key={obj.id} {...obj} />);
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
   return (

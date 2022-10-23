@@ -4,7 +4,8 @@ import { setSizeFilter, minusSizeFilter } from '../../redux/slices/filterSlice';
 import { useDispatch } from 'react-redux';
 const SizeFilter: React.FC = () => {
   const dispatch = useDispatch();
-  const sizes = [34, 36, 38, 40, 42, 44, 46];
+  const sizes = ['34', '36', '38', '40', '42', '44', '46'];
+
   const [filter, setFilter] = React.useState<boolean>(false);
   const [spoller, setSpoller] = React.useState<boolean>(false);
 
@@ -32,8 +33,10 @@ const SizeFilter: React.FC = () => {
       </div>
       <div className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
         {sizes.map((size) => (
-          <label onClick={onClickChecked} className="section-filter__checkbox checkbox">
+          <label className="section-filter__checkbox checkbox">
             <input
+              defaultChecked={true}
+              onClick={onClickChecked}
               data-error="Error"
               type="checkbox"
               className="checkbox__input"

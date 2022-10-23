@@ -8,6 +8,7 @@ export type CartItem = {
   price: number;
   imageUrl: string[];
   brand: string;
+  fabric: string;
   description: string;
   measures: { name: string; type: string }[];
   procent: number;
