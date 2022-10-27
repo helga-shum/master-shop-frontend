@@ -9,7 +9,7 @@ type HomeProductsProps = {
   items: {
     title: string;
     imageUrl: string[];
-    id: string;
+    _id: string;
     brand: string;
     sizes: string[];
     fabric: string;
@@ -42,7 +42,7 @@ const HomeProducts: React.FC<HomeProductsProps> = ({ items, isLoading }) => {
               ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
               : items.map((obj) => (
                   <Link to="/product">
-                    <Item key={obj.id} {...obj} />
+                    <Item key={obj._id} {...obj} />
                   </Link>
                 ))}
           </div>

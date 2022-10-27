@@ -3,7 +3,7 @@ import { calcTotalPrice } from '../../utils/calcTotalPrice';
 import { getCartFromLS } from '../../utils/getCartFromLocalStorage';
 
 export type CartItem = {
-  id: string;
+  _id: string;
   title: string;
   price: number;
   imageUrl: string[];
@@ -30,7 +30,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<CartItem>) {
-      const findItem = state.items.find((obj) => obj.id == action.payload.id);
+      const findItem = state.items.find((obj) => obj._id == action.payload._id);
       if (findItem) {
         findItem.count++;
       } else {
@@ -42,7 +42,7 @@ const cartSlice = createSlice({
       state.totalPrice = calcTotalPrice(state.items);
     },
     removeItem(state, action: PayloadAction<string>) {
-      state.items = state.items.filter((obj) => obj.id !== action.payload);
+      state.items = state.items.filter((obj) => obj._id !== action.payload);
     },
     clearItems(state) {
       state.items = [];
@@ -50,7 +50,7 @@ const cartSlice = createSlice({
     },
 
     minusItem(state, action: PayloadAction<string>) {
-      const findItem = state.items.find((obj) => obj.id == action.payload);
+      const findItem = state.items.find((obj) => obj._id == action.payload);
 
       if (findItem) {
         findItem.count--;

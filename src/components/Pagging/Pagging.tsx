@@ -17,7 +17,7 @@ const Pagging: React.FC<{
       nextLabel="next >"
       onPageChange={(event) => onChangePage(event.selected)}
       pageRangeDisplayed={6}
-      pageCount={3}
+      pageCount={totalPages}
       previousLabel="< previous"
       forcePage={currentPage}
     />

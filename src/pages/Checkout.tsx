@@ -119,7 +119,7 @@ function Checkout() {
           <div className="order-checkout__title title-checkout">Your order</div>
           <div className="order-checkout__items">
             {items.map((item: any) => (
-              <CartItemBlock key={item.id} {...item} />
+              <CartItemBlock key={item._id} {...item} />
             ))}
           </div>
           <div className="order-checkout__footer">

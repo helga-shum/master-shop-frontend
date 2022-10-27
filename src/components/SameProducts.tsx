@@ -14,7 +14,7 @@ const SameProducts: React.FC<{ category: number }> = ({ category }) => {
     {
       title: string;
       imageUrl: string[];
-      id: string;
+      _id: string;
       brand: string;
       sizes: string[];
       fabric: string;
@@ -52,7 +52,7 @@ const SameProducts: React.FC<{ category: number }> = ({ category }) => {
           <div className="products-slider__items items-products">
             {isLoading
               ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-              : items.map((obj) => <Item key={obj.id} {...obj} />)}
+              : items.map((obj) => <Item key={obj._id} {...obj} />)}
           </div>
         </div>
       </div>

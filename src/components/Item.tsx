@@ -6,7 +6,7 @@ type ItemProps = {
   view?: string;
   title: string;
   imageUrl: string[];
-  id: string;
+  _id: string;
   brand: string;
   sizes: string[];
   fabric: string;
@@ -24,7 +24,7 @@ const Item: React.FC<ItemProps> = ({
   view,
   title,
   imageUrl,
-  id,
+  _id,
   brand,
   sizes,
   fabric,
@@ -36,7 +36,7 @@ const Item: React.FC<ItemProps> = ({
   procent,
 }) => {
   const cartItem = useSelector((state: RootState) =>
-    state.cartSlice.items.find((obj) => obj.id == id),
+    state.cartSlice.items.find((obj) => obj._id == _id),
   );
 
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const Item: React.FC<ItemProps> = ({
   ];
   const onClickAdd = () => {
     const item: CartItem = {
-      id,
+      _id,
       title,
       price,
       imageUrl,
@@ -116,7 +116,7 @@ const Item: React.FC<ItemProps> = ({
             <div className="hover-item-product__footer">
               <div className="hover-item-product__old-price grn">64 990</div>
               <div className="hover-item-product__stock">There is available</div>
-              <Link to={`/catalog/${id}`}>
+              <Link to={`/catalog/${_id}`}>
                 <button className="hover-item-product__stock">More information</button>
               </Link>
               <div className="hover-item-product__price grn">64990</div>
@@ -160,7 +160,7 @@ const Item: React.FC<ItemProps> = ({
 
           {addedCount > 0 && <span>{addedCount}</span>}
           <div className="hover-item-product__stock">There is available</div>
-          <Link to={`/catalog/${id}`}>
+          <Link to={`/catalog/${_id}`}>
             <button className="hover-item-product__stock">More information</button>
           </Link>
           <div className="item-product__footer">

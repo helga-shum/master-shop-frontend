@@ -8,7 +8,7 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Skeleton from '@mui/material/Skeleton';
 type CommentsTypes = {
-  items: { user: { fullName: string; avatarUrl: string }; text: string }[];
+  items: { _id: string }[];
   isLoading: boolean;
 };
 const CommentsBlock: React.FC<CommentsTypes> = ({ items, isLoading = true }) => {

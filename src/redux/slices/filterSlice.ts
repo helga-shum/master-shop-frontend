@@ -25,7 +25,7 @@ const initialState: FilterSliceState = {
     name: 'Popularity',
     sort: 'order_number',
   },
-  sizeFilter: ['34', '36', '38', '40', '42', '44', '46'],
+  sizeFilter: ['40', '42'],
   brandFilter: ['Forever 21', 'Catwalk', 'Miss Chase', 'HandM', 'Biba Apparels', 'ASOS'],
   priceFilter: [10, 2500],
   fabricFilter: ['Linen', 'Polyester', 'Crepe', 'Denim', 'Cotton'],

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 type CartItemProps = {
   title: string;
   imageUrl: string[];
-  id: string;
+  _id: string;
   brand: string;
   sizes: string[];
   fabric: string;
@@ -20,7 +20,7 @@ type CartItemProps = {
 const CartItemBlock: React.FC<CartItemProps> = ({
   title,
   imageUrl,
-  id,
+  _id,
   brand,
   sizes,
   price,
@@ -33,14 +33,14 @@ const CartItemBlock: React.FC<CartItemProps> = ({
 }) => {
   const dispatch = useDispatch();
   const onClickPlus = () => {
-    dispatch(addItem({ id } as CartItem));
+    dispatch(addItem({ _id } as CartItem));
   };
   const onClickMinus = () => {
-    dispatch(minusItem(id));
+    dispatch(minusItem(_id));
   };
   const onClickRemove = () => {
     if (window.confirm('Are you sure?')) {
-      dispatch(removeItem(id));
+      dispatch(removeItem(_id));
     }
   };
 
@@ -48,13 +48,13 @@ const CartItemBlock: React.FC<CartItemProps> = ({
   return (
     <div className="order-checkout__item item-order">
       <div className="item-order__content">
-        <Link to={`/catalog/${id}`}>
+        <Link to={`/catalog/${_id}`}>
           <div className="item-order__image">
             <img src={imageUrl[0]} alt="" />
           </div>
         </Link>
         <div className="item-order__body">
-          <Link to={`/catalog/${id}`}>
+          <Link to={`/catalog/${_id}`}>
             <div className="item-order__title">
               <span>{title}</span>
             </div>

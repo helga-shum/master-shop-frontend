@@ -39,7 +39,7 @@ export const fetchItems = createAsyncThunk('item/fetchItemsStatus', async (param
 });
 
 type Item = {
-  id: string;
+  _id: string;
   title: string;
   price: number;
   imageUrl: string[];

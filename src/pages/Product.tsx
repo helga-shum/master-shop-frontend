@@ -1,19 +1,20 @@
 import PageSide from '../components/PageSide';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../axios';
 import React from 'react';
 import SameProducts from '../components/SameProducts';
 import { addItem, minusItem } from '../redux/slices/cartSlice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { CartItem } from '../redux/slices/cartSlice';
-
+import { useAppDispatch } from '../redux/store';
 import { AddComment } from '@mui/icons-material';
 import { Index } from '../components/AddComment';
 import CommentsBlock from '../components/CommentBlock';
+import { fetchItemComments } from '../redux/slices/commentSlice';
 
 const Product: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
   const [subImg, setSubImg] = React.useState<number>(0);
   const [item, setItem] = React.useState<CartItem>();
@@ -21,34 +22,23 @@ const Product: React.FC = () => {
   const [commentItems, setComments] = React.useState();
   const [activeNavy, setActiveNavy] = React.useState<string>('Description');
   const cartItem = useSelector((state: RootState) =>
-    state.cartSlice.items.find((obj: any) => obj.id == id),
+    state.cartSlice.items.find((obj: any) => obj._id == id),
   );
-  const { comments } = useSelector((state: RootState) => state.commentsReducer);
 
-  React.useEffect(() => {
-    async function fetchItem() {
-      try {
-        const { data } = await axios.get('https://62fa7a9bffd7197707ed6aa7.mockapi.io/items/' + id);
-        setItem(data);
-      } catch (error) {
-        alert('error');
-      }
-    }
-    fetchItem();
-  }, []);
   React.useEffect(() => {
     axios
       .get(`/catalog/${id}`)
       .then((res) => {
-        setComments(res.data);
+        setComments(res.data.comments);
+        setItem(res.data.product);
         setLoading(false);
+        console.log(res.data);
       })
-      .catch((err) => {
-        console.warn(err);
-        alert('Error');
+      .catch((error) => {
+        alert(error);
       });
   }, []);
-  console.log(commentItems);
+
   const idType: string = id !== undefined ? id : '';
 
   const onClickMinus = () => {
@@ -62,7 +52,7 @@ const Product: React.FC = () => {
   if (!item) {
     return <>Loading...</>;
   }
-  console.log(comments);
+
   return (
     <>
       <PageSide />
@@ -246,9 +236,9 @@ const Product: React.FC = () => {
           </div>
         </div>
 
-        <CommentsBlock items={comments.items} isLoading={false} />
+        <CommentsBlock items={commentItems} isLoading={false} />
 
-        <Index ItemId={id} user="Lesha" />
+        <Index itemId={id} />
         <SameProducts category={item.category} />
       </section>
     </>
