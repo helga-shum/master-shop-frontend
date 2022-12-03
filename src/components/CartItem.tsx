@@ -72,7 +72,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({
             onClick={onClickMinus}
             className="quantity__button quantity__button_minus"></button>
           <div className="quantity__input">
-            <input autoComplete="off" type="text" name="form[]" value={count} />
+            <input autoComplete="off" type="text" name="form[]" defaultValue={count} />
           </div>
           <button
             type="button"

@@ -8,12 +8,10 @@ import { RootState } from '../../redux/store';
 const PriceFilter: React.FC = () => {
   const { priceFilter } = useSelector((state: RootState) => state.filterSlice);
   const dispatch = useDispatch();
-  // const [value, setValue] = React.useState([2500, 7500]);
+
   const [filter, setFilter] = React.useState<boolean>(false);
   const [spoller, setSpoller] = React.useState<boolean>(false);
-  // const rangeSelector = (event: any, value: number[]) => {
-  //   setValue(value);
-  // };
+
   const rangeSelector = (
     event: React.ChangeEvent<Record<string, unknown>>,
     value: number | number[],
@@ -48,22 +46,30 @@ const PriceFilter: React.FC = () => {
         </Typography>
         <Slider
           key={`slider-${priceFilter}`}
-          value={priceFilter}
+          defaultValue={priceFilter}
           onChange={rangeSelector}
           valueLabelDisplay="auto"
-          min={10}
-          max={2500}
+          min={5}
+          max={500}
         />
         Your range of Price is between {priceFilter[0]} /- and {priceFilter[1]} /-
         <div className="section-filter__price-input">
           <div className="section-filter__field">
             <span>Min</span>
-            <input type="number" className="section-filter__input-min" value={priceFilter[0]} />
+            <input
+              type="number"
+              className="section-filter__input-min"
+              defaultValue={priceFilter[0]}
+            />
           </div>
           <div className="section-filter__separator">-</div>
           <div className="section-filter__field">
             <span>Max</span>
-            <input type="number" className="section-filter__input-max" value={priceFilter[1]} />
+            <input
+              type="number"
+              className="section-filter__input-max"
+              defaultValue={priceFilter[1]}
+            />
           </div>
         </div>
       </div>

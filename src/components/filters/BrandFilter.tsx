@@ -7,7 +7,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 const BrandFilter: React.FC = () => {
   const dispatch = useDispatch();
-  const brands = ['Forever 21', 'Catwalk', 'Miss Chase', 'HandM', 'Biba Apparels', 'ASOS'];
+  const brands = [
+    'GUESS',
+    'TOMMY HILFIGER',
+    'DKNY',
+    'HUGO',
+    'ADIDAS',
+    'CALVIN KLEIN',
+    'TOMMY HILFIGER',
+    'LEE',
+    "LEVI'S",
+    'ONLY',
+    'REEBOK',
+    'MORGAN',
+    'PUMA',
+    'PINKO',
+    'COLUMBIA',
+  ];
 
   const [filter, setFilter] = React.useState<boolean>(false);
   const [spoller, setSpoller] = React.useState<boolean>(false);
@@ -36,8 +52,8 @@ const BrandFilter: React.FC = () => {
         Brands
       </div>
       <div className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
-        {brands.map((brand) => (
-          <label className="section-filter__checkbox checkbox">
+        {brands.map((brand, index) => (
+          <label className="section-filter__checkbox checkbox" key={`${brand}_${index}`}>
             <input
               onClick={onClickChecked}
               defaultChecked={true}

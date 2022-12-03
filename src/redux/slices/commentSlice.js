@@ -14,7 +14,7 @@ const initialState = {
 const commentSlice = createSlice({
   name: 'comments',
   initialState,
-  reducer: {},
+  reducers: {},
   extraReducers: {
     //Getting post comments
     [fetchItemComments.pending]: (state) => {

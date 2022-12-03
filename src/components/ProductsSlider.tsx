@@ -3,9 +3,10 @@ import Skeleton from './Skeleton';
 
 import React from 'react';
 import ErrorPage from './ErrorPage';
+import axios from '../axios';
 
 const ProductsSlider: React.FC<{
-  view: string;
+  view?: string;
   products: {
     title: string;
     imageUrl: string[];
@@ -23,7 +24,6 @@ const ProductsSlider: React.FC<{
   }[];
   status: string;
 }> = ({ products, status, view }) => {
-  console.log(products);
   const clothes = products.map((obj) => <Item view={view} key={obj._id} {...obj} />);
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
   return (

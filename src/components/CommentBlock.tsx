@@ -8,7 +8,7 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Skeleton from '@mui/material/Skeleton';
 type CommentsTypes = {
-  items: { _id: string }[];
+  items: { _id: string; text: string; itemId: string; user: string }[];
   isLoading: boolean;
 };
 const CommentsBlock: React.FC<CommentsTypes> = ({ items, isLoading = true }) => {
@@ -17,8 +17,8 @@ const CommentsBlock: React.FC<CommentsTypes> = ({ items, isLoading = true }) => 
     <>
       Comments
       <List>
-        {(isLoading ? [...Array(5)] : items).map((obj, index) => (
-          <React.Fragment key={index}>
+        {(isLoading ? [...Array(5)] : items).map((obj) => (
+          <React.Fragment key={obj._id}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
                 {isLoading ? (

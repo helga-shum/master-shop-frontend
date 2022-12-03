@@ -36,6 +36,11 @@ body {
   margin: 0 auto;
   padding: 0px 20px;
 }
+input,
+button,
+submit {
+  border: none;
+}
 //main grid
 
 @import '_header';

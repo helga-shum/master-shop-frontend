@@ -20,7 +20,7 @@ export const Index = ({ itemId }) => {
       text,
     };
 
-    await axios.post(`/catalog/${itemId}`, fields);
+    await axios.post(`/catalog/${itemId}/comment`, fields);
 
     try {
     } catch (error) {

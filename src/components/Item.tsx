@@ -2,7 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem, CartItem } from '../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
 import { RootState } from '../redux/store';
+import { selectAuth } from '../redux/slices/authSlice';
+import { IconButton } from '@mui/material';
+import axios from '../axios';
+import { useState } from 'react';
+
 type ItemProps = {
+  // onLike: (string: string) => void;
   view?: string;
   title: string;
   imageUrl: string[];
@@ -21,6 +27,7 @@ type ItemProps = {
   procent: number;
 };
 const Item: React.FC<ItemProps> = ({
+  // onLike,
   view,
   title,
   imageUrl,
@@ -38,8 +45,19 @@ const Item: React.FC<ItemProps> = ({
   const cartItem = useSelector((state: RootState) =>
     state.cartSlice.items.find((obj) => obj._id == _id),
   );
-
+  const [like, setLike] = useState(false);
   const dispatch = useDispatch();
+  const isAuth = useSelector(selectAuth);
+  const onLike = async () => {
+    try {
+      setLike(!like);
+      await axios.post(`/item?likedId=${_id}`);
+    } catch (error) {
+      console.warn(error);
+      alert('error of liking item');
+    }
+  };
+
   const types = [
     'Skirts',
     'Dresses',
@@ -99,7 +117,7 @@ const Item: React.FC<ItemProps> = ({
                 <div className="options-item-product__label">Available clothing sizes</div>
                 <div className="options-item-product__value">
                   {sizes.map((size) => (
-                    <a href="" className="hover-item-product__title">
+                    <a key={size} href="" className="hover-item-product__title">
                       <span>{size}</span>
                     </a>
                   ))}
@@ -115,7 +133,16 @@ const Item: React.FC<ItemProps> = ({
             {addedCount > 0 && <span>{addedCount}</span>}
             <div className="hover-item-product__footer">
               <div className="hover-item-product__old-price grn">64 990</div>
-              <div className="hover-item-product__stock">There is available</div>
+              <button onClick={onLike} className="hover-item-product__stock">
+                <img
+                  src={
+                    !like
+                      ? 'https://img.icons8.com/ios/35/000000/like--v1.png'
+                      : 'https://img.icons8.com/ios-filled/35/FFFFFF/like--v1.png'
+                  }
+                />
+                {/* <img src="https://img.icons8.com/ios-filled/35/FFFFFF/like--v1.png"/> */}
+              </button>
               <Link to={`/catalog/${_id}`}>
                 <button className="hover-item-product__stock">More information</button>
               </Link>
@@ -146,7 +173,7 @@ const Item: React.FC<ItemProps> = ({
             <div className="options-item-product__label">Available clothing sizes</div>
             <div className="options-item-product__value">
               {sizes.map((size) => (
-                <a href="" className="hover-item-product__title">
+                <a key={size} href="" className="hover-item-product__title">
                   <span>{size}</span>
                 </a>
               ))}
@@ -159,7 +186,9 @@ const Item: React.FC<ItemProps> = ({
           </div>
 
           {addedCount > 0 && <span>{addedCount}</span>}
-          <div className="hover-item-product__stock">There is available</div>
+          <button onClick={onLike} className="hover-item-product__stock">
+            There is available
+          </button>
           <Link to={`/catalog/${_id}`}>
             <button className="hover-item-product__stock">More information</button>
           </Link>

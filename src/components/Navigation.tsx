@@ -21,10 +21,10 @@ const Navigation: React.FC<NavigationProps> = ({ categoryId, onClickCategory }) 
     <nav className="page__menu menu-page">
       <div className="menu-page__header">
         <Link to="/catalog">
-          <div className="menu-page__title">Каталог товаров</div>
+          <div className="menu-page__title">Catalog</div>
         </Link>
         <div className={navi == true ? 'menu-page__burger _active' : 'menu-page__burger'}>
-          <div onClick={() => setNavi(!navi)} className={'menu-page__lines'}>
+          <div onClick={() => setNavi(!navi)} className="menu-page__lines">
             <span></span>
             <span></span>
             <span></span>
@@ -35,7 +35,7 @@ const Navigation: React.FC<NavigationProps> = ({ categoryId, onClickCategory }) 
         <div className="menu-page__body">
           <ul className="menu-page__list">
             {types.map((categoryName, i) => (
-              <Link to="/catalog">
+              <Link to="/catalog" key={categoryName}>
                 <li className="menu-page__parent">
                   <div
                     onClick={() => {

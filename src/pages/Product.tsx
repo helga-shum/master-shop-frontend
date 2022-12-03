@@ -14,12 +14,13 @@ import CommentsBlock from '../components/CommentBlock';
 import { fetchItemComments } from '../redux/slices/commentSlice';
 
 const Product: React.FC = () => {
+  type TypeComment = { _id: string; text: string; itemId: string; user: string }[];
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
   const [subImg, setSubImg] = React.useState<number>(0);
   const [item, setItem] = React.useState<CartItem>();
   const [isLoading, setLoading] = React.useState(true);
-  const [commentItems, setComments] = React.useState();
+  const [commentItems, setComments] = React.useState<TypeComment>();
   const [activeNavy, setActiveNavy] = React.useState<string>('Description');
   const cartItem = useSelector((state: RootState) =>
     state.cartSlice.items.find((obj: any) => obj._id == id),
@@ -74,6 +75,7 @@ const Product: React.FC = () => {
             <div className="images-product__subslider _swiper">
               {item.imageUrl.map((image, i) => (
                 <div
+                  key={image}
                   onClick={() => {
                     setSubImg(i);
                   }}
@@ -87,9 +89,9 @@ const Product: React.FC = () => {
           </div>
           <div className="product__body body-product">
             <div className="body-product__top">
-              <a href="" className="body-product__compare">
+              <button className="body-product__compare">
                 <span>Compare</span>
-              </a>
+              </button>
               <div className="body-product__stock">there is in shop</div>
             </div>
             <div className="body-product__actions actions-product">
@@ -222,7 +224,7 @@ const Product: React.FC = () => {
               }>
               <table className="info-product__table">
                 {item.measures.map((measure) => (
-                  <tr>
+                  <tr key={measure.name}>
                     <td>
                       <div className="info-product__label">{measure.name}</div>
                     </td>
@@ -236,7 +238,7 @@ const Product: React.FC = () => {
           </div>
         </div>
 
-        <CommentsBlock items={commentItems} isLoading={false} />
+        <CommentsBlock items={commentItems as TypeComment} isLoading={false} />
 
         <Index itemId={id} />
         <SameProducts category={item.category} />

@@ -13,6 +13,7 @@ import { Registration } from './pages/Registration/Registration';
 import { Login } from './pages/Login/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthMe, selectAuth } from './redux/slices/authSlice';
+import LikedProducts from './pages/LikedProducts';
 function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectAuth);
@@ -32,6 +33,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/register" element={<Registration />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/liked" element={<LikedProducts />} />
           </Routes>
         </div>
         <InfoMenu />

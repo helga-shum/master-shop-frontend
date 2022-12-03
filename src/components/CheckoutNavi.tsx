@@ -8,7 +8,7 @@ const CheckoutNavi: React.FC = () => {
     <nav className="content-checkout__nav">
       {navies.map((navy, i) => (
         <div
-          key={i}
+          key={navy}
           onClick={() => {
             setActiveNavy(i);
           }}

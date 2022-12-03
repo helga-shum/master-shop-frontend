@@ -33,7 +33,7 @@ const SizeFilter: React.FC = () => {
       </div>
       <div className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
         {sizes.map((size) => (
-          <label className="section-filter__checkbox checkbox">
+          <label className="section-filter__checkbox checkbox" key={size}>
             <input
               defaultChecked={true}
               onClick={onClickChecked}

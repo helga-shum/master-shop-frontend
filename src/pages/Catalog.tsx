@@ -18,6 +18,8 @@ import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
 const Catalog: React.FC = () => {
+  const { data } = useSelector((state: RootState) => state.authReducer);
+
   const navigate = useNavigate();
   const {
     sizeFilter,
@@ -144,6 +146,7 @@ const Catalog: React.FC = () => {
                   }>
                   {options.map((obj: any, i) => (
                     <div
+                      key={obj.sort}
                       onClick={() => {
                         onClickSortType(obj);
                       }}
@@ -173,38 +176,11 @@ const Catalog: React.FC = () => {
                 }`}></div>
             </div>
           </div>
-          <div className="catalog__navi navi-catalog_top">
-            <div className="navi-catalog__show show-catalog">
-              <div className="show-catalog__label">On page:</div>
-              <div className="show-catalog__select">
-                <select name="form[]" className="show">
-                  <option value="1" selected={true}>
-                    1
-                  </option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </div>
-            </div>
-          </div>
+
           <Pagging totalPages={items.totalPages} onChangePage={onChangePage} />
           <ProductsSlider view={view} products={items.products} status={status} />
 
           <div className="catalog__navi navi-catalog">
-            <div className="navi-catalog__show show-catalog">
-              <div className="show-catalog__label">On page:</div>
-              <div className="show-catalog__select">
-                <select name="form[]" className="show">
-                  <option value="1" selected={true}>
-                    1
-                  </option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
-              </div>
-            </div>
             <div className="show-catalog__pages">
               <Pagging totalPages={items.totalPages} onChangePage={onChangePage} />
             </div>

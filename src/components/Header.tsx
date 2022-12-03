@@ -37,16 +37,10 @@ const Header: React.FC = () => {
         <div className="top-header__content _container">
           <div className="top-header__column">
             <div className="top-header__menu menu">
-              <div className="menu__icon icon-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
               <nav className="menu__body">
                 <ul className="menu__list">
                   {links.map((link, i) => (
-                    <li key={i}>
+                    <li key={link}>
                       <a
                         href="#"
                         onClick={() => onActiveLink(i)}
@@ -69,7 +63,7 @@ const Header: React.FC = () => {
           <div className="top-header__column">
             <div className="top-header__contacts contacts-header">
               <div className="contacts-header__column">
-                <div className="contacts-header__item contacts-header__item_icon">
+                <div className="contacts-header__item contacts-header__item_first-phone">
                   <div className="contacts-header__label">Київ</div>
                   <a href="tel:48787498125" className="contacts-header__phone">
                     +48-787-498-125
@@ -99,6 +93,11 @@ const Header: React.FC = () => {
                       <button onClick={onClickLogout}>Log out</button>
                     </Link>
                   </li>
+                  <li>
+                    <Link to="/liked" className="actions-header__item actions-header__item_like">
+                      <button>Liked products</button>
+                    </Link>
+                  </li>
                 </>
               ) : (
                 <>
@@ -117,42 +116,40 @@ const Header: React.FC = () => {
                   </li>
                 </>
               )}
-              <li>
-                <a
-                  href="mailto:shum.olha@gmail.com"
-                  className="actions-header__item actions-header__item_email">
-                  <span>shum.olha@gmail.com</span>
-                </a>
-              </li>
             </ul>
           </div>
           <div className="bottom-header__column">
             <div className="bottom-header__info info-header">
               <div className="info-header__column">
+                <a href="mailto:shum.olha@gmail.com" className="info-header__email">
+                  <span>shum.olha@gmail.com</span>
+                </a>
+              </div>
+              <div className="info-header__column">
                 <a href="" className="info-header__callback">
-                  <span>Обратный звонок</span>
+                  <span>Back call</span>
                 </a>
               </div>
               <div className="info-header__column">
                 <div className="info-header__schedule">
                   <p>
-                    <span>Пн-Пт:</span>09:00-21:00;
+                    <span>Mon-Fri:</span>09:00-21:00;
                   </p>
                   <p>
-                    <span>Сб-Вс:</span>10:00-20:00;
+                    <span>Sat-Sun:</span>10:00-20:00;
                   </p>
                 </div>
               </div>
               {location.pathname !== '/checkout' ? (
                 <Link to="/checkout">
-                  <button className="info-header__column">
-                    <div className="info-header__cart">
+                  <div className="info-header__column">
+                    <div className="info-header__cart info-header__count">
                       <span>{totalCount}</span>
                     </div>
-                    <div className="info-header__cart">
+                    <div className="info-header__cart info-header__price">
                       <span>{totalPrice}</span>
                     </div>
-                  </button>
+                  </div>
                 </Link>
               ) : (
                 ''

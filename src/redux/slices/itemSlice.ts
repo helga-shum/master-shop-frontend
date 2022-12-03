@@ -12,9 +12,15 @@ type Params = {
   priceFilter: number[];
   fabricFilter: string[];
 };
-export const fetchPopularItems = createAsyncThunk('posts/fetchPopulatItems', async () => {
+
+export const fetchPopularItems = createAsyncThunk('item/fetchPopularItems', async () => {
   const { data } = await axios.get('/');
   return data;
+});
+export const fetchLikedItems = createAsyncThunk('item/fetchLikedItems', async () => {
+  const { data } = await axios.get<Item[]>('/liked');
+
+  return data as Item[];
 });
 export const fetchItems = createAsyncThunk('item/fetchItemsStatus', async (params: Params) => {
   const {
@@ -38,7 +44,7 @@ export const fetchItems = createAsyncThunk('item/fetchItemsStatus', async (param
   return data as Item[];
 });
 
-type Item = {
+export type Item = {
   _id: string;
   title: string;
   price: number;
@@ -60,12 +66,14 @@ export enum Status {
   ERROR = 'error',
 }
 type ItemSliceState = {
+  likedItems: Item[];
   popularItems: Item[];
   items: { products: Item[]; totalPages: number };
   status: Status.LOADING | Status.SUCCES | Status.ERROR;
 };
 
 const initialState: ItemSliceState = {
+  likedItems: [],
   popularItems: [],
   items: { products: [], totalPages: 0 },
   status: Status.LOADING,
@@ -108,6 +116,20 @@ const itemSlice = createSlice({
       .addCase(fetchPopularItems.rejected, (state) => {
         state.status = Status.ERROR;
         state.popularItems = [];
+      })
+      //liked products
+      .addCase(fetchLikedItems.pending, (state) => {
+        state.status = Status.LOADING;
+        state.likedItems = [];
+      })
+      .addCase(fetchLikedItems.fulfilled, (state, action) => {
+        state.status = Status.SUCCES;
+        //@ts-ignore
+        state.likedItems = action.payload;
+      })
+      .addCase(fetchLikedItems.rejected, (state) => {
+        state.status = Status.ERROR;
+        state.likedItems = [];
       });
   },
 });

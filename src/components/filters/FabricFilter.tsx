@@ -31,7 +31,7 @@ const FabricFilter: React.FC = () => {
       </div>
       <div className={filter == true ? 'section-filter__body _active' : 'section-filter__body'}>
         {fabrics.map((fabric) => (
-          <label className="section-filter__checkbox checkbox">
+          <label className="section-filter__checkbox checkbox" key={fabric}>
             <input
               defaultChecked={true}
               onClick={onClickChecked}
