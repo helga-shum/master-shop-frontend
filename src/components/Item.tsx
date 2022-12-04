@@ -86,7 +86,7 @@ const Item: React.FC<ItemProps> = ({
     };
     dispatch(addItem(item));
   };
-
+  const new_price = Math.round(price - price * (procent / 100));
   const addedCount = cartItem ? cartItem.count : 0;
   if (view == 'grid' || view == undefined) {
     return (
@@ -102,9 +102,9 @@ const Item: React.FC<ItemProps> = ({
               {brand}
             </a>
             <div className="item-product__footer">
-              <div className="item-product__old-price grn">23 400</div>
+              <div className="item-product__old-price grn">{price} $</div>
               <button onClick={onClickAdd} className="item-product__add"></button>
-              <div className="item-product__price grn">{price} $</div>
+              <div className="item-product__price grn">{new_price} $</div>
             </div>
           </div>
           <div className="item-product__hover hover-item-product">
@@ -117,7 +117,7 @@ const Item: React.FC<ItemProps> = ({
                 <div className="options-item-product__label">Available clothing sizes</div>
                 <div className="options-item-product__value">
                   {sizes.map((size) => (
-                    <a key={size} href="" className="hover-item-product__title">
+                    <a key={size} href="#" className="hover-item-product__title">
                       <span>{size}</span>
                     </a>
                   ))}
@@ -132,7 +132,7 @@ const Item: React.FC<ItemProps> = ({
             <button onClick={onClickAdd} className="hover-item-product__cart"></button>
             {addedCount > 0 && <span>{addedCount}</span>}
             <div className="hover-item-product__footer">
-              <div className="hover-item-product__old-price grn">64 990</div>
+              <div className="hover-item-product__old-price grn">{price} $</div>
               <button onClick={onLike} className="hover-item-product__stock">
                 <img
                   src={
@@ -146,7 +146,7 @@ const Item: React.FC<ItemProps> = ({
               <Link to={`/catalog/${_id}`}>
                 <button className="hover-item-product__stock">More information</button>
               </Link>
-              <div className="hover-item-product__price grn">64990</div>
+              <div className="hover-item-product__price grn">{new_price} $</div>
             </div>
           </div>
         </div>
@@ -155,7 +155,7 @@ const Item: React.FC<ItemProps> = ({
   }
   return (
     <div className="items-products__column ">
-      <div className="item-product _active">
+      <div className="item-product_active">
         <div className="item-product__labels"></div>
         <a href="" className="item-product__image">
           <img src={imageUrl[0]} alt="сукня" />

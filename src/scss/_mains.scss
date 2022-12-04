@@ -107,6 +107,7 @@
     padding: 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   &__title {
     flex: 1 1 auto;
@@ -339,8 +340,8 @@
     align-items: center;
     padding: 10px 0;
     img {
-      max-width: 100%;
-      max-height: 240px;
+      height: 100%;
+      width: auto;
     }
   }
   &__body {
@@ -367,7 +368,6 @@
     }
   }
   &__old-price {
-    flex: 1 1 100%;
     text-align: right;
     color: #999999;
     font-size: 18px;
@@ -456,16 +456,20 @@
   display: flex;
   flex-direction: column;
   color: #fff;
+
   &__title {
     color: #c2c2c2;
     font-size: 16px;
     font-weight: 300;
     margin: 0px 0px 25px 0px;
     span {
-      display: block;
+      display: inline-block;
+
+      background-color: #f68038;
       color: #ffffff;
       font-weight: 900;
-      margin: 0px 0px 5px 0px;
+      padding: 5px;
+      margin: 5px 20px;
     }
   }
   &__options {
@@ -805,11 +809,12 @@
   }
 }
 .mainslider {
-  &__body {
-  }
-  &__slide {
-    position: relative;
-  }
+  background-image: url('../img/oko.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-right: 20px;
+
   &__content {
     position: relative;
     z-index: 2;
@@ -821,39 +826,6 @@
     top: 0;
     left: 0;
   }
-  /*&__dotts {
-    position: relative;
-    z-index: 2;
-    margin: -27.5px 23px 0px 23px;
-    display: flex;
-    justify-content: center;
-    counter-reset: item;
-    .swiper-pagination-bullet {
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      border: 2px solid #fff;
-      position: relative;
-      &::after {
-        color: #fffefe;
-        font-size: 16px;
-        font-weight: 900;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-color: #f68038;
-        counter-increment: item;
-        content: counter(item);
-      }
-    }
-    .swiper-pagination-bullet-active {
-    }
-  }*/
 }
 .content-mainslider {
   padding: 20px 35px 60px 35px;
@@ -868,6 +840,13 @@
     span {
       display: block;
       color: #f68038;
+    }
+    @media (max-width: $md1+px) {
+      margin: 0px 0px 30px 0px;
+    }
+    @media (max-width: $md3+px) {
+      font-size: 40px;
+      font-weight: 800;
     }
   }
   &__text {
@@ -887,6 +866,10 @@
     }
     &:last-child {
       margin: 0px 0px 0px 0px;
+    }
+    @media (max-width: $md2+px) {
+      font-size: 30px;
+      font-weight: 800;
     }
   }
   &__button {
@@ -1083,22 +1066,19 @@
   }
 }
 .items-products {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0px -15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  margin-top: 5rem;
+  padding-bottom: 20px;
   &__column {
-    flex: 0 1 33.33333%;
-    padding: 0px 0px;
-    margin: 0px 0px 10px 0px;
-    @media (max-width: $md1+px) and (min-width: $md2+px) {
-      flex: 0 1 50%;
-    }
-    @media (max-width: 840px) {
-      flex: 0 1 50%;
-    }
-    @media (max-width: 600px) {
-      flex: 1 1 100%;
-    }
+    height: 100%;
+    padding: 25px;
+
+    border-radius: 0.5rem;
+    transition: all 0.4s ease;
   }
   &._active {
     flex-direction: column;

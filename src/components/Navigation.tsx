@@ -11,7 +11,6 @@ const Navigation: React.FC<NavigationProps> = ({ categoryId, onClickCategory }) 
     'Jeans',
     'Tops',
     'Sweaters',
-
     'Shirts',
     'Costumes',
   ];
