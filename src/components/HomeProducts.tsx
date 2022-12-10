@@ -1,10 +1,8 @@
-import Item from './Item';
 import Skeleton from './Skeleton';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { setCurrentPage } from '../redux/slices/filterSlice';
-import { useAppDispatch } from '../redux/store';
+
+import ProductsSlider from './ProductsSlider';
 type HomeProductsProps = {
   items: {
     title: string;
@@ -22,11 +20,10 @@ type HomeProductsProps = {
     count: number;
   }[];
   isLoading: boolean;
+  status: string;
 };
 
-const HomeProducts: React.FC<HomeProductsProps> = ({ items, isLoading }) => {
-  const dispatch = useAppDispatch();
-
+const HomeProducts: React.FC<HomeProductsProps> = ({ items, isLoading, status }) => {
   return (
     <div className="page__products products-slider">
       <div className="products-slider__header">
@@ -38,13 +35,7 @@ const HomeProducts: React.FC<HomeProductsProps> = ({ items, isLoading }) => {
       <div className="products-slider__item _swiper">
         <div className="products-slider__slide">
           <div className="products-slider__items items-products">
-            {isLoading
-              ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-              : items.map((obj) => (
-                  <Link to="/product">
-                    <Item key={obj._id} {...obj} />
-                  </Link>
-                ))}
+            <ProductsSlider view="grid" products={items} status={status} />
           </div>
         </div>
       </div>

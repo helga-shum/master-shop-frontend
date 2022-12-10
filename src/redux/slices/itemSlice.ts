@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../../axios';
 
 import { Sort } from './filterSlice';
@@ -12,7 +12,15 @@ type Params = {
   priceFilter: number[];
   fabricFilter: string[];
 };
-
+// export const fetchAddLikedItem = createAsyncThunk('item/fetchAddLikedItem', async (likedId) => {
+//   await axios.post(`/item?likedId=${likedId}`);
+// });
+// export const fetchRemoveLikedItem = createAsyncThunk(
+//   'item/fetchRemoveLikedItem',
+//   async (likedId) => {
+//     await axios.delete(`/item?likedId=${likedId}`);
+//   },
+// );
 export const fetchPopularItems = createAsyncThunk('item/fetchPopularItems', async () => {
   const { data } = await axios.get('/');
   return data;
@@ -83,9 +91,15 @@ const itemSlice = createSlice({
   name: 'item',
   initialState,
   reducers: {
-    setItems(state, action) {
+    setProducts(state, action) {
       state.items = action.payload;
     },
+    // addProduct(state, action: PayloadAction<Item>) {
+    //   state.likedItems = state.likedItems.push(...action.payload);
+    // },
+    // removeProduct(state, action: PayloadAction<Item>) {
+    //   state.likedItems = state.likedItems((obj) => obj._id !== action.payload._id);
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -131,7 +145,11 @@ const itemSlice = createSlice({
         state.status = Status.ERROR;
         state.likedItems = [];
       });
+    //add to liked products
+    // .addCase(fetchAddLikedItem.pending, (state, action) => {
+    //   state.likedItems =  state.likedItems.push(...action.payload);
+    // })
   },
 });
-export const { setItems } = itemSlice.actions;
+export const { setProducts } = itemSlice.actions;
 export default itemSlice.reducer;

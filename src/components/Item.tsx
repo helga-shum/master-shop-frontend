@@ -2,13 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem, CartItem } from '../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
 import { RootState } from '../redux/store';
-import { selectAuth } from '../redux/slices/authSlice';
-import { IconButton } from '@mui/material';
 import axios from '../axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type ItemProps = {
-  // onLike: (string: string) => void;
+  like: boolean;
   view?: string;
   title: string;
   imageUrl: string[];
@@ -27,7 +25,7 @@ type ItemProps = {
   procent: number;
 };
 const Item: React.FC<ItemProps> = ({
-  // onLike,
+  like,
   view,
   title,
   imageUrl,
@@ -45,16 +43,30 @@ const Item: React.FC<ItemProps> = ({
   const cartItem = useSelector((state: RootState) =>
     state.cartSlice.items.find((obj) => obj._id == _id),
   );
-  const [like, setLike] = useState(false);
+  const [liked, setLike] = useState(false);
+
+  useEffect(() => {
+    setLike(like);
+    console.log(like, 'render');
+  }, []);
+
   const dispatch = useDispatch();
-  const isAuth = useSelector(selectAuth);
-  const onLike = async () => {
+
+  // useEffect(() => {
+  //   const like = JSON.parse(localStorage.getItem('like') || '');
+  //   setLike(like);
+  // }, []);
+  // useEffect(() => {
+  //   localStorage.setItem('like', JSON.stringify(like));
+  // }, [like]);
+
+  const onLike = () => {
     try {
-      setLike(!like);
-      await axios.post(`/item?likedId=${_id}`);
+      setLike(!liked);
+
+      liked == false ? axios.post(`item?likedId=${_id}`) : axios.delete(`item?likedId=${_id}`);
     } catch (error) {
       console.warn(error);
-      alert('error of liking item');
     }
   };
 
@@ -86,6 +98,7 @@ const Item: React.FC<ItemProps> = ({
     };
     dispatch(addItem(item));
   };
+
   const new_price = Math.round(price - price * (procent / 100));
   const addedCount = cartItem ? cartItem.count : 0;
   if (view == 'grid' || view == undefined) {
@@ -136,12 +149,11 @@ const Item: React.FC<ItemProps> = ({
               <button onClick={onLike} className="hover-item-product__stock">
                 <img
                   src={
-                    !like
-                      ? 'https://img.icons8.com/ios/35/000000/like--v1.png'
-                      : 'https://img.icons8.com/ios-filled/35/FFFFFF/like--v1.png'
+                    liked
+                      ? 'https://img.icons8.com/emoji/48/null/heart-suit.png'
+                      : 'https://img.icons8.com/emoji/50/null/white-heart.png'
                   }
                 />
-                {/* <img src="https://img.icons8.com/ios-filled/35/FFFFFF/like--v1.png"/> */}
               </button>
               <Link to={`/catalog/${_id}`}>
                 <button className="hover-item-product__stock">More information</button>
@@ -186,9 +198,7 @@ const Item: React.FC<ItemProps> = ({
           </div>
 
           {addedCount > 0 && <span>{addedCount}</span>}
-          <button onClick={onLike} className="hover-item-product__stock">
-            There is available
-          </button>
+          <button className="hover-item-product__stock">There is available</button>
           <Link to={`/catalog/${_id}`}>
             <button className="hover-item-product__stock">More information</button>
           </Link>

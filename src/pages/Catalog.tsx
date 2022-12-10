@@ -18,8 +18,6 @@ import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
 const Catalog: React.FC = () => {
-  const { data } = useSelector((state: RootState) => state.authReducer);
-
   const navigate = useNavigate();
   const {
     sizeFilter,
@@ -32,8 +30,9 @@ const Catalog: React.FC = () => {
     searchValue,
   } = useSelector(selectFilter);
 
-  const { items, status } = useSelector((state: RootState) => state.itemSlice);
-
+  const { items, status, likedItems } = useSelector((state: RootState) => state.itemSlice);
+  const likedIds = likedItems.map((item) => item._id);
+  console.log(likedIds);
   const dispatch = useAppDispatch();
 
   const [sorting, setSorting] = React.useState<boolean>(false);

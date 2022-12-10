@@ -9,12 +9,12 @@ import { RootState, useAppDispatch } from '../redux/store';
 function LikedProducts() {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const { likedItems, status } = useSelector((state: RootState) => state.itemSlice);
+
   const dispatch = useAppDispatch();
   React.useEffect(() => {
     dispatch(fetchLikedItems());
     setIsLoading(false);
   }, []);
-  console.log(likedItems);
 
   return (
     <>

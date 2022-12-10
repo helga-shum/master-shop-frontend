@@ -6,6 +6,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { useAppDispatch } from '../redux/store';
+import ProductsSlider from './ProductsSlider';
 const SameProducts: React.FC<{ category: number }> = ({ category }) => {
   const dispatch = useAppDispatch();
 
@@ -50,9 +51,7 @@ const SameProducts: React.FC<{ category: number }> = ({ category }) => {
       <div className="products-slider__item _swiper">
         <div className="products-slider__slide">
           <div className="products-slider__items items-products">
-            {isLoading
-              ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-              : items.map((obj) => <Item key={obj._id} {...obj} />)}
+            <ProductsSlider view="grid" products={items} status="succes" />
           </div>
         </div>
       </div>

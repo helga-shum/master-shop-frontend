@@ -5,6 +5,7 @@ import { authReducer } from './slices/authSlice';
 import { commentsReducer } from './slices/commentSlice';
 import itemSlice from './slices/itemSlice';
 import { useDispatch } from 'react-redux';
+// import thunkMiddleware from 'redux-thunk';
 export const store = configureStore({
   reducer: {
     filterSlice,
@@ -13,6 +14,7 @@ export const store = configureStore({
     itemSlice,
     commentsReducer,
   },
+  // middleware: [thunkMiddleware],
 });
 
 export type RootState = ReturnType<typeof store.getState>;

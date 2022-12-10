@@ -22,7 +22,7 @@ function Home() {
       <PageSide />
       <div className="page__content">
         <Slider />
-        <HomeProducts items={popularItems} isLoading={isLoading} />
+        <HomeProducts items={popularItems} isLoading={isLoading} status={status} />
       </div>
     </>
   );

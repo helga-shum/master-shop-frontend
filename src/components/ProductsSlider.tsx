@@ -3,7 +3,10 @@ import Skeleton from './Skeleton';
 
 import React from 'react';
 import ErrorPage from './ErrorPage';
-import axios from '../axios';
+
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../redux/store';
+import { fetchLikedItems } from '../redux/slices/itemSlice';
 
 const ProductsSlider: React.FC<{
   view?: string;
@@ -24,7 +27,19 @@ const ProductsSlider: React.FC<{
   }[];
   status: string;
 }> = ({ products, status, view }) => {
-  const clothes = products.map((obj) => <Item view={view} key={obj._id} {...obj} />);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const dispatch = useAppDispatch();
+  React.useEffect(() => {
+    dispatch(fetchLikedItems());
+    setIsLoading(false);
+  }, []);
+  const { likedItems } = useSelector((state: RootState) => state.itemSlice);
+
+  const likedIds = likedItems.map((item) => item._id);
+
+  const clothes = products.map((obj) => (
+    <Item like={likedIds.includes(obj._id) ? true : false} view={view} key={obj._id} {...obj} />
+  ));
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
   return (
     <div className="page__products products-slider ">

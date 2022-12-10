@@ -17,9 +17,6 @@
     }
   }
   &__content {
-    @media (max-width: $md2+px) {
-      display: none;
-    }
     @media (min-width: $md2+px) {
       display: block !important;
     }
@@ -392,6 +389,9 @@
     @media (max-width: 540px) {
       margin: 0px 10px 0px 0px;
     }
+  }
+  @media (max-width: $md2+px) {
+    display: none;
   }
 }
 .navi-catalog {
